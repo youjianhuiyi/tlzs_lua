@@ -4,5 +4,5 @@ local g_szItemName = AI_GetParameter("仓库取物")
 --参数3：需取出的绑定状态 0无所谓 1不绑的 2绑定的 可空
 --参数4：整理背包 true 或 false 可空
 --参数5：需取出的锁定状态 0无所谓 1不绑的 2绑定的 可空
-local nCnt = Bank_GetItem("彩棉 青麻 龙血矿石 真武矿石 翡翠矿石 纫革10级 炼玉10级 ",1000,1)
+local nCnt = Bank_GetItem("彩棉 青麻 龙血矿石 真武矿石 翡翠矿石 纫革10级 炼玉10级",1000,1)
 执行脚本("交易给老板号");Sleep(1000)
