@@ -19,6 +19,8 @@ function main()
 	执行脚本("锦囊取物")
 	-- 第三步，将取出来的物品存仓一次
 	执行脚本("[功能] 物品存仓")
+	-- 第四步，将取出来的物品存仓一次
+	执行脚本("加工材料")
 	local g_szItemName = AI_GetParameter("仓库取物")
 	--参数1：需取出的物品名称 ，空格分开
 	--参数2：取出的数量
@@ -28,7 +30,7 @@ function main()
 	local nCnt = Bank_GetItem(items,1000,1,true)
 	while true do
 		执行脚本("交易给老板号");Sleep(100);
-		if judgeItems ~= true then
+		if judgeItems == true then
 			break
 		end
 	end
@@ -58,3 +60,5 @@ end
 
 -- 执行主控
 main()
+-- 完成之后执行买卖补给
+执行脚本("[新]回城")
