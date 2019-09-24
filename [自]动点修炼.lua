@@ -1,29 +1,29 @@
---åœ¨ç•Œé¢[ä¿¡æ¯]-[è‡ªå®šä¹‰å‚æ•°]é¡µé¢ï¼Œå¯è®¾ç½®å‚æ•°åå’Œå‚æ•°å†…å®¹
---ä¾‹å¦‚ï¼š  ç‚¹ä¿®ç‚¼|1-2 2-3 2-5
--- 2-3è¡¨ç¤ºç¬¬äºŒæœ¬å®å…¸ç¬¬ä¸‰å·ï¼Œå¤šæœ¬ç”¨ç©ºæ ¼éš”å¼€
-local m_xiulian = AI_GetParameter_User("ç‚¹ä¿®ç‚¼") 
+--ÔÚ½çÃæ[ĞÅÏ¢]-[×Ô¶¨Òå²ÎÊı]Ò³Ãæ£¬¿ÉÉèÖÃ²ÎÊıÃûºÍ²ÎÊıÄÚÈİ
+--ÀıÈç£º  µãĞŞÁ¶|1-2 2-3 2-5
+-- 2-3±íÊ¾µÚ¶ş±¾±¦µäµÚÈı¾í£¬¶à±¾ÓÃ¿Õ¸ñ¸ô¿ª
+local m_xiulian = AI_GetParameter_User("µãĞŞÁ¶")
 
--- ä¿®ç‚¼_è§£æå‚æ•°
+-- ĞŞÁ¶_½âÎö²ÎÊı
 local function xl_parseParam()
     local tXiu = {}
-    local t1 = SplitString(m_xiulian, " ") --é€šè¿‡ç©ºæ ¼åˆ†å‰²å‚æ•°
+    local t1 = SplitString(m_xiulian, " ") --Í¨¹ı¿Õ¸ñ·Ö¸î²ÎÊı
     for i = 1, #t1 do
         local tmp = t1[i]
-        local t2 = SplitString(tmp, "-") --å†æ¬¡åˆ†å‰²å‚æ•° 2-1
-        if #t2 == 2 then --ç¡®è®¤æ˜¯å¦2ä¸ªå€¼
-            local mj = tonumber(t2[1]) --å“ªæœ¬ç§˜ç±
-            local jn = tonumber(t2[2]) --å“ªæœ¬æŠ€èƒ½
-            if type(mj) == "number" and type(jn) == "number" then --ç¡®è®¤å‚æ•°æ­£ç¡®æ€§
-                table.insert(tXiu, {miji = mj, jineng = jn}) --éœ€è¦ç‚¹çš„åŠ å…¥æ•°ç»„
+        local t2 = SplitString(tmp, "-") --ÔÙ´Î·Ö¸î²ÎÊı 2-1
+        if #t2 == 2 then --È·ÈÏÊÇ·ñ2¸öÖµ
+            local mj = tonumber(t2[1]) --ÄÄ±¾ÃØ¼®
+            local jn = tonumber(t2[2]) --ÄÄ±¾¼¼ÄÜ
+            if type(mj) == "number" and type(jn) == "number" then --È·ÈÏ²ÎÊıÕıÈ·ĞÔ
+                table.insert(tXiu, {miji = mj, jineng = jn}) --ĞèÒªµãµÄ¼ÓÈëÊı×é
             end
         end
     end
     return tXiu
 end
 
---ä¿®ç‚¼_æå‡å¢ƒç•Œ
+--ĞŞÁ¶_ÌáÉı¾³½ç
 local function xl_upgradeSkill(tSkill)
-    DebugMessage("ç¬¬%dæœ¬ï¼Œç¬¬%då·éœ€è¦æå‡å¢ƒç•Œ", tSkill.miji, tSkill.jineng)
+    DebugMessage("µÚ%d±¾£¬µÚ%d¾íĞèÒªÌáÉı¾³½ç", tSkill.miji, tSkill.jineng)
     local select = -1
     if tSkill.miji == 2 then
         select = tSkill.jineng + 5
@@ -50,42 +50,42 @@ local function xl_upgradeSkill(tSkill)
     end
 end
 
---é€»è¾‘
+--Âß¼­
 function _SMain(...)
-    local nTimeOut = -1 --è¶…æ—¶æ—¶é—´
-    local tXiu = xl_parseParam() --è§£æå‚æ•°
+    local nTimeOut = -1 --³¬Ê±Ê±¼ä
+    local tXiu = xl_parseParam() --½âÎö²ÎÊı
     if #tXiu == 0 then
-        DebugMessage("æ²¡æœ‰è§£æåˆ°æ­£ç¡®çš„å‚æ•°ï¼Œè¯·åœ¨[ä¿¡æ¯]-[è‡ªå®šä¹‰å‚æ•°]é¡µæŒ‰æŒ‡å®šæ ¼å¼è¾“å…¥")
+        DebugMessage("Ã»ÓĞ½âÎöµ½ÕıÈ·µÄ²ÎÊı£¬ÇëÔÚ[ĞÅÏ¢]-[×Ô¶¨Òå²ÎÊı]Ò³°´Ö¸¶¨¸ñÊ½ÊäÈë")
         return
     end
     --
     while true do
-        MoveToNPC(241, 31, 2, "æ‰«åœ°ç¥åƒ§", nil, nil, T_callback_no_fuben)
+        MoveToNPC(241, 31, 2, "É¨µØÉñÉ®", nil, nil, T_callback_no_fuben)
         if nTimeOut == -1 then
-            nTimeOut = GetTickCount() --åˆå§‹åŒ–è®¡æ—¶
+            nTimeOut = GetTickCount() --³õÊ¼»¯¼ÆÊ±
         end
         Sleep(600)
-        QuestFrameOptionClicked_Item("#{XL_XML_35}", 1, 800) --ä¿®ç‚¼
-        DeleteDebugMsg("#{XL_090707_04}") --æ¸…é™¤æŒ‡å®šå±å¹•ä¿¡æ¯
+        QuestFrameOptionClicked_Item("#{XL_XML_35}", 1, 800) --ĞŞÁ¶
+        DeleteDebugMsg("#{XL_090707_04}") --Çå³ıÖ¸¶¨ÆÁÄ»ĞÅÏ¢
         for i = 1, #tXiu do
             local tmp = tXiu[i]
-            GetLuaValue(string.format("setmetatable(_G, {__index=XiulianStudy_Env});XiulianStudy_Xinfa_Clicked(%d)", tmp.miji), "", 0) ----ç‚¹å‡»ç§˜ç±
+            GetLuaValue(string.format("setmetatable(_G, {__index=XiulianStudy_Env});XiulianStudy_Xinfa_Clicked(%d)", tmp.miji), "", 0) ----µã»÷ÃØ¼®
             Sleep(800)
-            GetLuaValue(string.format("setmetatable(_G, {__index=XiulianStudy_Env});XiulianStudy_Skill_Clicked(%d)", tmp.jineng), "", 0) ----ç‚¹å‡»æŠ€èƒ½
+            GetLuaValue(string.format("setmetatable(_G, {__index=XiulianStudy_Env});XiulianStudy_Skill_Clicked(%d)", tmp.jineng), "", 0) ----µã»÷¼¼ÄÜ
             Sleep(800)
-            GetLuaValue("setmetatable(_G, {__index=XiulianStudy_Env});XiulianStudy_UpLevel_Clicked()", "", 0) ----ç‚¹å‡»å­¦ä¹ 
+            GetLuaValue("setmetatable(_G, {__index=XiulianStudy_Env});XiulianStudy_UpLevel_Clicked()", "", 0) ----µã»÷Ñ§Ï°
             Sleep(800)
-            if IsInDebugMsg("#{XL_090707_04}", 1) then --æ˜¯å¦å­˜åœ¨æç¤ºæå‡å¢ƒç•Œçš„å±å¹•ä¿¡æ¯
-                xl_upgradeSkill(tmp) --å­˜åœ¨åˆ™å‡çº§
+            if IsInDebugMsg("#{XL_090707_04}", 1) then --ÊÇ·ñ´æÔÚÌáÊ¾ÌáÉı¾³½çµÄÆÁÄ»ĞÅÏ¢
+                xl_upgradeSkill(tmp) --´æÔÚÔòÉı¼¶
             end
         end
         Sleep(500)
         if Player:GetDataInt("POWER") < 33 then
-            DebugMessage("åŠŸåŠ›å€¼ä¸å¤Ÿï¼")
+            DebugMessage("¹¦Á¦Öµ²»¹»£¡")
             break
         end
         if nTimeOut ~= -1 and GetTickCount() - nTimeOut > 1 * 60 * 1000 then
-            DebugMessage("ç‚¹ä¿®ç‚¼è¶…æ—¶1åˆ†é’Ÿ")
+            DebugMessage("µãĞŞÁ¶³¬Ê±1·ÖÖÓ")
             break
         end
     end

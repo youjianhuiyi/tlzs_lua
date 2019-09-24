@@ -30,23 +30,35 @@ local players = {
 -- 等待执行找点的寻路功能
 ------------------------------------------------------
 function waitForPlayers()
-
+	-- 用来标识是第几队号
+	local num = 0
 	for key,value in ipairs(players)
 	do
-		for p_k1,p_v1 in ipairs(value)
-		do
-			if playName == p_v1 then
-				PushDebugMessage(p_v1)
-				PushDebugMessage("准备去定点刷猪坐标圣兽山"..pos[key][1]..","..pos[key][2]);
-				Sleep(500)
-				local xpos,ypos = Player_GetPos();
-				PushDebugMessage(xpos.."--"..ypos)
-				while true do
-					if xpos..ypos ~= pos[key][1]..pos[key][2] then
-						跨图寻路("圣兽山",pos[key][1],pos[key][2]);break;
-					else
-						break;
-					end
+		if key >= 1 and key <= 6 then
+			num = 1
+		elseif key >= 7 and key <= 12 then
+			num = 2
+		elseif key >= 13 and key <= 18 then
+			num = 3
+		elseif key >= 19 and key <= 24 then
+			num = 4
+		elseif key >= 25 and key <= 30 then
+			num = 5
+		elseif key >= 31 and key <= 36 then
+			num = 6
+		end
+
+		if playName == value then
+			PushDebugMessage(value)
+			PushDebugMessage("准备去定点刷猪坐标圣兽山"..pos[num][1]..","..pos[num][2]);
+			Sleep(500)
+			local xpos,ypos = Player_GetPos();
+			PushDebugMessage(xpos.."--"..ypos)
+			while true do
+				if xpos..ypos ~= pos[num][1]..pos[num][2] then
+					跨图寻路("圣兽山",pos[num][1],pos[num][2]);break;
+				else
+					break;
 				end
 			end
 		end

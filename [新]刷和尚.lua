@@ -1,5 +1,5 @@
 PushDebugMessage("#eDC4C18#cFFFF00 #81È«ĞÂ¶¨ÖÆ°æ±¾Ë¢ºÍÉĞ£¬±Ø½øÒ»´Î£¬¶¨µãÊØ");
-currentDay = os.date("%y:%m:%d")
+currentDay = os.date("%H:%M")
 monkTime = {"20:40","16:30","21:30","23:00"};
 playName = GetPlayerInfo("NAME");
 activeScene = GetActiveSceneName()
@@ -20,12 +20,12 @@ pos = {
 -- ÎŞ¶ÓÔ±¸öÊıÏŞÖÆ£¬µ±Ç°Ò»ĞĞ¶ÔÓ¦ÉÏÃæºÍÉĞ×ø±êµÄÎ»ÖÃ£¬¡¢
 ------------------------------------------------------
 players = {
-	{"¶º¶º£®¤ä","¶¹¶¹Âèßä","Çé¶¨ÈıÊÀØ¼","èóô~¡¦","ìá·ã©cê¿¡æ","¡åõÚ½ÅÓµËû©f"},
-	{"¤¡Ò¼È~áuÓÍ¤¢","©n·Æ¶ù¡¢©f","ÓêÁÖÖ®ºó","ºìÑÕ°Á©~£®","¤·FĞ¦ÌìD¤¹","´ËÉúµÄ»Ø²‰"},
-	{"¡ãÁèóãÓê£®¡Ö","¡å£®²¨ÉÙ©c","©mËØÑÕ£®¤ä","¡äÑ©×ß","Ø¼Âş²½¥¾ÌìÁú","Æ½·²¤Î"},
-	{"Se¢·Ê…ÎZ¸ç©Y","¡äÃÎÓ°£®¤ä","©ná°©fÙâ¡ã","³¬¼¶¡ü¡úÄÌÂè","¨t¡îTeaRÄ°©f","Am¡ãÏ§ÄãÈôÃü"},
-	{"•¦›ïÆS†OˆµìÍ","¡ã©m×Ïıˆ¥ä","Ìì×ÓÔÂ","TH£­Äª‡Î","¤é©n±¿´ô´ô¡ã","Ğ¡Ğ¡ÊéÍ¯2"},
-	{"Ğ¡Ò¶Ø¼¾øÉ±","ÑŞ¸èÁ_·óĞĞ","Çá¿ñ¡àĞ¡¿É","ëè€£®©g","©n×Ï£®½¾°Á©f","£®Lynthia"},
+	"¶º¶º£®¤ä","¶¹¶¹Âèßä","Çé¶¨ÈıÊÀØ¼","èóô~¡¦","ìá·ã©cê¿¡æ","¡åõÚ½ÅÓµËû©f",
+	"¤¡Ò¼È~áuÓÍ¤¢","©n·Æ¶ù¡¢©f","ÓêÁÖÖ®ºó","ºìÑÕ°Á©~£®","¤·FĞ¦ÌìD¤¹","´ËÉúµÄ»Ø²‰",
+	"¡ãÁèóãÓê£®¡Ö","¡å£®²¨ÉÙ©c","©mËØÑÕ£®¤ä","¡äÑ©×ß","Ø¼Âş²½¥¾ÌìÁú","Æ½·²¤Î",
+	"Se¢·Ê…ÎZ¸ç©Y","¡äÃÎÓ°£®¤ä","©ná°©fÙâ¡ã","³¬¼¶¡ü¡úÄÌÂè","¨t¡îTeaRÄ°©f","Am¡ãÏ§ÄãÈôÃü",
+	"•¦›ïÆS†OˆµìÍ","¡ã©m×Ïıˆ¥ä","Ìì×ÓÔÂ","TH£­Äª‡Î","¤é©n±¿´ô´ô¡ã","Ğ¡Ğ¡ÊéÍ¯2",
+	"Ğ¡Ò¶Ø¼¾øÉ±","ÑŞ¸èÁ_·óĞĞ","Çá¿ñ¡àĞ¡¿É","ëè€£®©g","©n×Ï£®½¾°Á©f","£®Lynthia"
 };
 	
 
@@ -33,28 +33,39 @@ players = {
 -- µÈ´ıÖ´ĞĞÕÒµãµÄÑ°Â·¹¦ÄÜ
 ------------------------------------------------------
 function waitForPlayers()
-
+	-- ÓÃÀ´±êÊ¶ÊÇµÚ¼¸¶ÓºÅ
+	local num = 0
 	for key,value in ipairs(players)
 	do
-		for p_k1,p_v1 in ipairs(value)
-		do
-			if playName == p_v1 then
-				PushDebugMessage(p_v1)
-				PushDebugMessage("×¼±¸È¥¶¨µãË¢ºÍÉĞµØÍ¼".. pos[key][1].."×ø±êÎª£º"..pos[key][2]..","..pos[key][3]);
-				Sleep(500)
-				local xpos,ypos = Player_GetPos();
-				PushDebugMessage(xpos.."--"..ypos)
-				while true do
-					if xpos..ypos ~= pos[key][2]..pos[key][3] then
-						¿çÍ¼Ñ°Â·(pos[key][1],pos[key][2],pos[key][3]);break;
-					else
-						break;
-					end
+		if key >= 1 and key <= 6 then
+			num = 1
+		elseif key >= 7 and key <= 12 then
+			num = 2
+		elseif key >= 13 and key <= 18 then
+			num = 3
+		elseif key >= 19 and key <= 24 then
+			num = 4
+		elseif key >= 25 and key <= 30 then
+			num = 5
+		elseif key >= 31 and key <= 36 then
+			num = 6
+		end
+
+		if playName == value then
+			PushDebugMessage(value)
+			PushDebugMessage("×¼±¸È¥¶¨µãË¢ºÍÉĞµØÍ¼".. pos[num][1].."×ø±êÎª£º"..pos[num][2]..","..pos[num][3]);
+			Sleep(500)
+			local xpos,ypos = Player_GetPos();
+			PushDebugMessage(xpos.."--"..ypos)
+			while true do
+				if xpos..ypos ~= pos[num][2]..pos[num][3] then
+					¿çÍ¼Ñ°Â·(pos[num][1],pos[num][2],pos[num][3]);break;
+				else
+					break;
 				end
 			end
 		end
 	end
-	
 end
 
 ------------------------------------------------------
