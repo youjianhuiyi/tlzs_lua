@@ -2,7 +2,6 @@
 至若老板号接收交易物品
 --]]
 local items = "彩棉 青麻 龙血矿石 真武矿石 翡翠矿石 纫革10级 炼玉10级";
-local itemsTable = {"彩棉","青麻","龙血矿石","真武矿石","翡翠矿石","纫革10级","炼玉10级"};
 local players = {
 	"°凌筱雨．≈","″．波少ヽ","﹎素颜．や","′雪走","丶漫步ゾ天龙","平凡の",
 	"Se⒎蕝蝂哥℡","′梦影．や"," ﹏岚ゝ兮°","超级↑→奶妈","╰☆TeaR陌ゝ","Am°惜你若命",
@@ -28,36 +27,10 @@ function main()
 	--参数4：整理背包 true 或 false 可空
 	--参数5：需取出的锁定状态 0无所谓 1不绑的 2绑定的 可空
 	local nCnt = Bank_GetItem(items,1000,1,true)
-	while true do
+	for i = 1 , 4 do
 		执行脚本("交易给老板号");Sleep(100);
-		if judgeItems == true then
-			break
-		end
 	end
 end
-
---[[
-判断身上是否还有需要交易的物品
-]]
-function judgeItems()
-	local count = 0;
-	for k,v in ipairs(itemsTable) do
-		--	查找道具+材料+任务,会叠加统计所有找到的数量 (3个返回值)
-		--	返回值：3个(逻辑型 整数型 整数型) 是否找到 所有数量 位置索引
-		--  参数1：文本型		物品名称，只支持精确名字
-		local bFind, nCount, nIndex = Bag:FindBagItem_All(v)
-		if bFind then
-			count = count + 1;
-		end
-	end
-
-	if count > 0 then
-		return false
-	else
-		return true
-	end
-end
-
 -- 执行主控
 main()
 -- 完成之后执行买卖补给
