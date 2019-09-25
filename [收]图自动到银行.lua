@@ -18,7 +18,7 @@ local players = {
 
 -- 仓库取图逻辑
 function getTu(num)
-	local strItem = AI_GetParameter_User("取图挖图") 
+	local strItem = AI_GetParameter_User("取图挖图")
 	strItem = " " .. strItem .. " " 
 	PushDebugMessage("取出物品：" .. strItem)
 	Bank_GetItem(strItem, num)
@@ -83,7 +83,29 @@ end
 
 --[[获取道具栏背包里面的物品并且往对应格子里面扔物品--]]
 function findBaseItemsToBank()
-    --通过获取当前背包的空余空间来取物品
+	--遍历道具栏材料栏所有物品
+	--返回值：物品数组
+	local tObj = Bag:EnumAllObj()
+	for i = 1, #tObj do
+		local tmp = tObj[i]
+		local strMsg =
+			string.format(
+			" 位置：%d\r\n id:%d\r\n 名称：%s\r\n 文本类型：%s\r\n 整数类型：%d\r\n 等级：%d\r\n 数量：%d\r\n 绑定：%d\r\n 锁定:%d\r\n 制作者：%s",
+			tmp.index,
+			tmp.id,
+			tmp.name,
+			tmp.class,
+			tmp.menpai,
+			tmp.level,
+			tmp.count,
+			tmp.bind,
+			tmp.lock,
+			tmp.author
+		)
+		MessageBox(strMsg)
+	end
+	--[[
+		--通过获取当前背包的空余空间来取物品
     GetLuaValue("setmetatable(_G, {__index = MainMenuBar_Env});MainMenuBar_Packet_Clicked();","",0);Sleep(80);
     GetLuaValue("setmetatable(_G, {__index = Packet_Env});Packet_ChangeTabIndex(0);","",0);Sleep(80);
     for i=0,29 do
@@ -92,8 +114,8 @@ function findBaseItemsToBank()
         if nId~=0 then
             sName = GetLuaValue("local theAction = EnumAction("..i ..", 'packageitem');return theAction:GetName();","s",1)
 			Sleep(80)
-            CurrNum = GetLuaValue("return DataPool:GetBaseBag_Num();","n",1);Sleep(80);--[[获取当前道具栏总共有多少个格子--]]
-            CurrNum_Mat = GetLuaValue("return DataPool:GetMatBag_Num();","n",1);Sleep(80);--[[获取当前道具栏总共有多少个格子--]]
+            CurrNum = GetLuaValue("return DataPool:GetBaseBag_Num();","n",1);Sleep(80);--获取当前道具栏总共有多少个格子
+            CurrNum_Mat = GetLuaValue("return DataPool:GetMatBag_Num();","n",1);Sleep(80);--获取当前道具栏总共有多少个格子
         end
         -- 如果是里面的物品则取出来。前提是道具栏空间
         if sName == "藏宝图"  then
@@ -102,9 +124,11 @@ function findBaseItemsToBank()
             -- PushDebugMessage("xPos："..xPos..";yPos："..yPos.."物品名称为："..sName);
             GetLuaValue("setmetatable(_G, {__index = Packet_Env});Packet_ItemBtnClicked("..xPos..","..yPos..");","",0)
 			Sleep(100)
-			--[[取出帮会银行第16个格子的物品。（当前在第几页，就取当前面的第16个格子的物品）--]]
+			--取出帮会银行第16个格子的物品。（当前在第几页，就取当前面的第16个格子的物品
         end
     end
+	]]
+    
 end
 
 -- 往银行扔藏宝图
@@ -118,7 +142,7 @@ function throwTreasureMap()
 	--收图操作，固定收图120张之后直接 停止 收图。直接 往银行扔图
 	--checkNPCDst()
 	-- 放图到第2个-第4个箱
-	for i = 2,4 do
+	for i = 1,5 do
 		checkNPCDst()
 		GetLuaValue("setmetatable(_G, {__index = Banghui_Bank_Env});Banghui_Bank_patulousBox_Clicked(".. i ..");","",0)
 		Sleep(100)
