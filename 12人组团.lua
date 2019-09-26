@@ -6,12 +6,6 @@ local players = {
 	"逗逗．や","豆豆妈咪","情定三世丶","梵魚ˇ","灬枫ヽ昕℃","″踮脚拥他ゝ"
 };
 
-local TeamLeaders = {
-	{"°凌筱雨．≈","″．波少ヽ","﹎素颜．や","′雪走","丶漫步ゾ天龙","平凡の"},
-	{"ぁ壹葉醬油あ","﹏菲儿、ゝ","雨林之后","红颜傲﹡．","しF笑天Dす","此生的回矇"},
-	{"小叶丶绝杀","艳歌羅敷行","轻狂∴小可","霂鑰．ゞ","﹏紫．骄傲ゝ","．Lynthia"}
-};
-
 
 function createGroup()
 	playerName = GetPlayerInfo("NAME");
@@ -32,5 +26,8 @@ MessageBox(strTeam)
 --	返回值2：成员数组   
 --	参数1：周围的范围距离
 local nCount,tObj = Team:GetSurroundMember(15)
+for k,v in ipairs(tObj) do
+	PushDebugMessage(k .. v)
+end
 --退出队伍
 Team:LeaveTeam()

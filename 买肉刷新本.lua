@@ -40,16 +40,5 @@ function buyPetEats()
 end
 
 --核心调用
-while true do
-    checkNPCDst()
-    buyPetEats()
-    --获取背包物品数量
-    --	返回值：整数型
-    --  参数1：文本型		物品名称，只支持精确名字
-    --  参数2：整数型		绑定状态 0无所谓 1不绑的 2绑定的
-    --  参数3：整数型		锁定状态 0无所谓 1不锁的 2锁定的
-    local nCount = Bag:GetItemCount("回旋金球", 0, 0)
-    if nCount >= 40 then
-        break;
-    end
-end
+checkNPCDst()
+buyPetEats()
