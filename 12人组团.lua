@@ -19,7 +19,7 @@ function createGroup()
 		PushDebugMessage("当前角色名：" .. playName);
 		if playName == value then
 			PushDebugMessage(value .. "准备去接12人团任务，准备自动刷副本");
-			执行脚本("帮会聚宝盆")
+			执行脚本("12人副本")
 		end
 	end
 end
