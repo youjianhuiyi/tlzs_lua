@@ -40,6 +40,39 @@ TalkNpc("NPC名字")
 --id,name ,class ,title,x ,y ,dst ,hp ,guid ,owner ,menpai ,petzrid ,state ,zwType,level ,target ,model ,bhid ,inteam ,leader
 --id,名称，类型，称号，x坐标，y坐标，距离，血，GUID,怪物拥有者id，门派，珍兽拥有者id,状态，作物类型，等级，目标id,模型id，帮会id,是否在队伍，是否队长
 local tObj = Enum2XAllObj()
+--过滤类型。 参数2：依次代表 {NPC,怪物，玩家，珍兽，宝箱} 0排除，1保留，
+tObj = ObjFilterByClass(tObj, {0, 0, 1, 0, 0})
+--过滤帮会id,返回帮会id为23和56的对象
+tObj = ObjFilterByBHID(tObj, " 84 ")
+for i = 1, #tObj do
+    local tmp = tObj[i]
+    local strMsg =
+        string.format(
+        " 序号：%d\r\n id:%d\r\n 名称：%s\r\n 类型：%s\r\n 称号：%s\r\n x坐标：%d\r\n Y坐标：%d\r\n 距离：%d\r\n 血：%d\r\n GUID:%d\r\n 怪物拥有者id：%s\r\n 门派：%s\r\n 珍兽拥有者id：%d\r\n 状态：%s\r\n 作物类型：%s\r\n 等级：%d\r\n 目标id：%d\r\n 模型id：%d\r\n 帮会id：%d\r\n 是否在队伍：%d\r\n 是否队长：%d\r\n ",
+		i,
+        tmp.id,
+        tmp.name,
+        tmp.class,
+        tmp.title,
+        tmp.x,
+        tmp.y,
+        tmp.dst,
+        tmp.hp,
+        tmp.guid,
+        tmp.owner,
+        tmp.menpai,
+        tmp.petzrid,
+        tmp.state,
+        tmp.zwType,
+        tmp.level,
+        tmp.target,
+        tmp.model,
+        tmp.bhid,
+        tmp.inteam,
+        tmp.leader
+    )
+    MessageBox(strMsg)
+end
 
 --过滤类型。 参数2：依次代表 {NPC,怪物，玩家，珍兽，宝箱} 0排除，1保留，
 tObj = ObjFilterByClass(tObj, {0, 0, 1, 0, 0})
