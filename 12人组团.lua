@@ -65,5 +65,5 @@ end
 
 --核心调用，
 
-MoveToNPC(191,130,246,"范纯祐");Sleep(1000)
+MoveToNPC(210,173,246,"高阳");Sleep(1000)
 createGroup();
