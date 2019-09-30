@@ -27,8 +27,6 @@ players = {
 	"暒涳芐哋埖焱","°﹎紫龍ヤ","天子月","TH－莫囄","ら﹏笨呆呆°","小小书童2",
 	"小叶丶绝杀","艳歌羅敷行","轻狂∴小可","霂鑰．ゞ","﹏紫．骄傲ゝ","．Lynthia"
 };
-	
-
 ------------------------------------------------------
 -- 等待执行找点的寻路功能
 ------------------------------------------------------
@@ -86,7 +84,7 @@ function execMonk(times)
 		end
 	end
 	等待到指定时间(times);
-	--执行脚本("藏经阁(和尚)");	
+	--执行脚本("藏经阁(和尚)")
 end
 
 ------------------------------------------------------
@@ -117,7 +115,7 @@ while true do
 	local now=os.date("%H:%M");
 	PushDebugMessage("#eDC4C18#cFFFF00 当前时间为".. os.date("%H:%M:%S"));	
 	local result = readyExecAttackMonk(now);
-	if result == false then 
+	if result == false then
 		break;
 	else
 		readyExecAttackMonk(now);

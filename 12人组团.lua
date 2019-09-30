@@ -14,7 +14,7 @@ local masterTeam = {
 };
 
 function createGroup()
-	playerName = GetPlayerInfo("NAME");
+	playName = GetPlayerInfo("NAME");
 	for key,value in ipairs(slaveTeam) do
 		PushDebugMessage("当前角色名：" .. playName);
 		if playName == value then
@@ -64,6 +64,5 @@ function judgeTeamPlayers(key1,key2)
 end
 
 --核心调用，
-
 MoveToNPC(210,173,246,"高阳");Sleep(1000)
 createGroup();
