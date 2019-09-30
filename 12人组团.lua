@@ -50,8 +50,8 @@ function judgeTeamPlayers(key1,key2)
 		--取角色名称。对比上面队伍名称,如果是团长号所在的队，不需要做操作，如果不是团队所在的队，需要退队。
 		--将对应需要申请进团的队伍名称转换成字符串进行查找，人员有没有到齐
 		local masterStr = table.concat( masterTeam, ", ", key1, key2 )
-		if string.find( masterStr,tmp.name ) then
-			masterNum = masterNum +1
+		if string.find( masterStr,tmp.name) ~= nil then
+			masterNum = masterNum + 1
 		end
 	end
 	-- 判断申请需要进团的队伍到齐之后，则退出当前团队
@@ -65,4 +65,7 @@ end
 
 --核心调用，
 MoveToNPC(210,173,246,"高阳");Sleep(1000)
-createGroup();
+for i = 0 ,10 do
+	createGroup();
+	Sleep(10000);
+end
