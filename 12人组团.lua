@@ -20,15 +20,24 @@ function createGroup()
 		if playName == value then
 			PushDebugMessage(value .. "准备去接12人团任务，准备自动刷副本");
 			if key >= 1 and key <= 6 then
-				judgeTeamPlayers(1,6)
+				loopExec(1,6)
 			elseif key >= 7 and key <= 12 then
-				judgeTeamPlayers(7,12)
+				loopExec(7,12)
 			elseif key >= 13 and key <= 18 then
-				judgeTeamPlayers(13,18)
+				loopExec(13,18)
 			else
 				return false
 			end
 			--执行脚本("12人副本")
+		end
+	end
+end
+
+function loopExec(key1,key2)
+	while true do
+		result = judgeTeamPlayers(key1,key2)
+		if result then
+			break
 		end
 	end
 end
@@ -58,14 +67,12 @@ function judgeTeamPlayers(key1,key2)
 	if masterNum >= 6 then
 		--退出队伍
 		Team:LeaveTeam()
+		return true
 	else
-		judgeTeamPlayers(key1, key2)
+		return false
 	end
 end
 
 --核心调用，
 MoveToNPC(210,173,246,"高阳");Sleep(1000)
-for i = 0 ,10 do
-	createGroup();
-	Sleep(10000);
-end
+createGroup();
