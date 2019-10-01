@@ -83,29 +83,7 @@ end
 
 --[[获取道具栏背包里面的物品并且往对应格子里面扔物品--]]
 function findBaseItemsToBank()
-	--遍历道具栏材料栏所有物品
-	--返回值：物品数组
-	local tObj = Bag:EnumAllObj()
-	for i = 1, #tObj do
-		local tmp = tObj[i]
-		local strMsg =
-			string.format(
-			" 位置：%d\r\n id:%d\r\n 名称：%s\r\n 文本类型：%s\r\n 整数类型：%d\r\n 等级：%d\r\n 数量：%d\r\n 绑定：%d\r\n 锁定:%d\r\n 制作者：%s",
-			tmp.index,
-			tmp.id,
-			tmp.name,
-			tmp.class,
-			tmp.menpai,
-			tmp.level,
-			tmp.count,
-			tmp.bind,
-			tmp.lock,
-			tmp.author
-		)
-		MessageBox(strMsg)
-	end
-	--[[
-		--通过获取当前背包的空余空间来取物品
+	--通过获取当前背包的空余空间来取物品
     GetLuaValue("setmetatable(_G, {__index = MainMenuBar_Env});MainMenuBar_Packet_Clicked();","",0);Sleep(80);
     GetLuaValue("setmetatable(_G, {__index = Packet_Env});Packet_ChangeTabIndex(0);","",0);Sleep(80);
     for i=0,29 do
@@ -126,9 +104,7 @@ function findBaseItemsToBank()
 			Sleep(100)
 			--取出帮会银行第16个格子的物品。（当前在第几页，就取当前面的第16个格子的物品
         end
-    end
-	]]
-    
+    end 
 end
 
 -- 往银行扔藏宝图
