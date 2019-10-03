@@ -1,8 +1,8 @@
 PushDebugMessage("#eDC4C18#cFFFF00 #81全新定制版本刷和尚，必进一次，定点守");
-currentDay = os.date("%H:%M")
-monkTime = {"20:40","16:30","21:30","23:00"};
-playName = GetPlayerInfo("NAME");
-activeScene = GetActiveSceneName()
+local currentDay = os.date("%H:%M")
+local monkTime = {"20:40","16:30","21:30","23:00"};
+local playName = GetPlayerInfo("NAME");
+local activeScene = GetActiveSceneName()
 ------------------------------------------------------
 -- 定义和尚坐标
 ------------------------------------------------------
@@ -35,29 +35,30 @@ function waitForPlayers()
 	local num = 0
 	for key,value in ipairs(players)
 	do
-		if key >= 1 and key <= 6 then
-			num = 1
-		elseif key >= 7 and key <= 12 then
-			num = 2
-		elseif key >= 13 and key <= 18 then
-			num = 3
-		elseif key >= 19 and key <= 24 then
-			num = 4
-		elseif key >= 25 and key <= 30 then
-			num = 5
-		elseif key >= 31 and key <= 36 then
-			num = 6
-		end
-
 		if playName == value then
+			if key >= 1 and key <= 6 then
+				num = 1
+			elseif key >= 7 and key <= 12 then
+				num = 2
+			elseif key >= 13 and key <= 18 then
+				num = 3
+			elseif key >= 19 and key <= 24 then
+				num = 4
+			elseif key >= 25 and key <= 30 then
+				num = 5
+			elseif key >= 31 and key <= 36 then
+				num = 6
+			end
 			PushDebugMessage(value)
 			PushDebugMessage("准备去定点刷和尚地图".. pos[num][1].."坐标为："..pos[num][2]..","..pos[num][3]);
 			Sleep(500)
 			local xpos,ypos = Player_GetPos();
 			PushDebugMessage(xpos.."--"..ypos)
 			while true do
-				if xpos..ypos ~= pos[num][2]..pos[num][3] then
-					跨图寻路(pos[num][1],pos[num][2],pos[num][3]);break;
+				if xpos.. "|" .. ypos ~= pos[num][2].. "|" .. pos[num][3] then
+					跨图寻路(pos[num][1],pos[num][2],pos[num][3]);
+					Sleep(1000)
+					break;
 				else
 					break;
 				end
@@ -83,8 +84,22 @@ function execMonk(times)
 			break
 		end
 	end
-	等待到指定时间(times);
-	--执行脚本("藏经阁(和尚)")
+	if times >= "10:44" and times <= "11:00" then
+		PushDebugMessage("#eDC4C18#cFFFF00 当前时间".. times .. "已经开始刷猪了，赶快进吧");
+		return false
+	elseif  times >= "16:29" and times <= "17:45" then
+		PushDebugMessage("#eDC4C18#cFFFF00 当前时间".. times .. "已经开始刷猪了，赶快进吧");
+		return false
+	elseif  times >= "21:29" and times <= "21:40" then
+		PushDebugMessage("#eDC4C18#cFFFF00 当前时间".. times .. "已经开始刷猪了，赶快进吧");
+		return false
+	elseif times >= "22:59" and times <= "23:15" then
+		PushDebugMessage("#eDC4C18#cFFFF00 当前时间".. times .. "已经开始刷猪了，赶快进吧");
+		return false
+	else
+		等待到指定时间(times);
+		return false
+	end
 end
 
 ------------------------------------------------------
@@ -113,7 +128,7 @@ end
 ------------------------------------------------------
 while true do
 	local now=os.date("%H:%M");
-	PushDebugMessage("#eDC4C18#cFFFF00 当前时间为".. os.date("%H:%M:%S"));	
+	PushDebugMessage("#eDC4C18#cFFFF00 当前时间为".. os.date("%H:%M"));	
 	local result = readyExecAttackMonk(now);
 	if result == false then
 		break;
@@ -121,4 +136,3 @@ while true do
 		readyExecAttackMonk(now);
 	end
 end
--- waitForPlayers()

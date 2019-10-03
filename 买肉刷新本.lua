@@ -5,7 +5,7 @@ function checkNPCDst()
 		if tmp.name == "ÔÆÃìÃì" and tonumber(tmp.dst) <= 3 then
 			return true
 		else
-            MoveToNPC(275,295,LUOYANG_ID,"ÔÆÃìÃì");Sleep(1000)
+            MoveToNPC(275,295,LUOYANG_ID,"ÔÆÃìÃì");Sleep(50)
 		end
     end
     return false
