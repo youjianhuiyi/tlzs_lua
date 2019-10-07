@@ -15,8 +15,8 @@ local players = {
 		{name = "平凡の",		num1 = 26,num2 = 30},
 		--第二队
 		{name = "Se⒎蕝蝂哥℡",	num1 = 30,num2 = 30},
-		{name = "′梦影．や",		num1 = 30,num2 = 30},
-		{name = "﹏岚ゝ兮°",	num1 = 25,num2 = 30},
+		{name = "′梦影．",		num1 = 30,num2 = 30},
+		{name = "や ﹏岚ゝ兮°",	num1 = 25,num2 = 30},
 		{name = "超级↑→奶妈",	num1 = 30,num2 = 26},
 		{name = "╰☆TeaR陌ゝ",	num1 = 30,num2 = 26},
 		{name = "Am°惜你若命",	num1 = 26,num2 = 30},
@@ -252,3 +252,4 @@ PushDebugMessage("准备清包")
 PushDebugMessage("准备挖图")
 执行脚本("自动挖藏宝图")
 PushDebugMessage("准备清包")
+执行脚本("[功]挖图专用清包")

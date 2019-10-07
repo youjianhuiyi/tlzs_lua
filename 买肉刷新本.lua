@@ -1,5 +1,7 @@
 function checkNPCDst()
-	local Obj = Enum2XAllObj()
+    local Obj = Enum2XAllObj()
+    --过滤类型。 参数2：依次代表 {NPC,怪物，玩家，珍兽，宝箱} 0排除，1保留，
+    tObj = ObjFilterByClass(tObj, {1, 0, 0, 0, 0})
 	for i = 1, #Obj do
 		local tmp = Obj[i]
 		if tmp.name == "云渺渺" and tonumber(tmp.dst) <= 3 then
@@ -39,6 +41,27 @@ function buyPetEats()
     PushDebugMessage("买肉结束，准备开刷")
 end
 
+local DropCommonItem = {"后肘肉口粮","蝗虫口粮","棕榈口粮"}
+
+function destroyItem()
+	for key,value in ipairs(DropCommonItem) do
+		local bFind, nIndex = Bag:FindBagItem_DJ(value,0)
+		if bFind == true and nIndex ~= -1 then
+			PushDebugMessage("销毁物品名称： [" .. value.."]");
+			-- 等待(50)
+			CallFun(5,nIndex);
+			Sleep(10);
+		end
+	end
+	
+end
+
 --核心调用
 checkNPCDst()
 buyPetEats()
+
+--下面是销毁6次，物品名写在下面
+--大概5秒钟销毁一次
+for i = 1,2 do
+	destroyItem();
+end

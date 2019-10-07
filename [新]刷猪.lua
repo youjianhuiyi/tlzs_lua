@@ -1,6 +1,4 @@
 PushDebugMessage("#eDC4C18#cFFFF00 #81全新定制版本刷猪，必进一次，定点守");
---local pigTime1 = "14:00";
---local pigTime2 = "21:50";
 local pigTime = {"14:00","21:50"}
 local playName = GetPlayerInfo("NAME");
 local activeScene = GetActiveSceneName()
@@ -92,7 +90,7 @@ function execPig(times)
 		return false
 	else
 		等待到指定时间(times);
-		return false
+		return true
 	end
 end
 
@@ -102,9 +100,9 @@ end
 function readyExecAttackPig(now)
 	local xpos,ypos = Player_GetPos();
 	if now >= "13:58" and now <= "14:20" then
-		execPig(pigTime[1])
+		return execPig(pigTime[1])
 	elseif now >= "21:45" and now <= "22:15" then
-		execPig(pigTime[2])
+		return execPig(pigTime[2])
 	else
 		PushDebugMessage("#eDC4C18#cFFFF00 当前时间".. now .. "不在刷猪时间范围内,执行下个任务");
 		return false
@@ -119,7 +117,7 @@ while true do
 	local now=os.date("%H:%M");
 	PushDebugMessage("#eDC4C18#cFFFF00 当前时间为".. os.date("%H:%M"));	
 	local result = readyExecAttackPig(now);
-	if result == false then 
+	if result == true then 
 		break;
 	else
 		readyExecAttackPig(now);

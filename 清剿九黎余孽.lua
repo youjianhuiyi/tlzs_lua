@@ -1,79 +1,79 @@
-local m_missionName = "æ¸…å‰¿ï¼šä¹é»ä½™å­½"
+local m_missionName = "Çå½Ë£º¾ÅÀèÓàÄõ"
 local m_npc = {
-    {x = 223, y = 215, sceneID = 697, name = "æ±¤å­¦çœŸ", tid = 146}
+    {x = 223, y = 215, sceneID = 697, name = "ÌÀÑ§Õæ", tid = 146}
 }
 
-LoadUserScript("åæ ‡æ¸…å‰¿ä¹é»ä½™å­½")
+LoadUserScript("×ø±êÇå½Ë¾ÅÀèÓàÄõ")
 
---CDG:Init() å¦‚æœç”¨è¿™ä¸ªåˆå§‹åŒ–æœ‰é—®é¢˜ï¼Œå¦‚æœæ˜¯è·Ÿéšé˜Ÿé•¿ï¼Œåˆ™ä¸ä¼šä¸»åŠ¨å»åæ ‡
-CDG:fubeiInit() --åˆå§‹åŒ–
-CDG.attack = true --æ˜¯å¦æ”»å‡»
-CDG.attackMode = UI_GetDGParam("æ‰“æ€ªæ¨¡å¼") --è·å–ç•Œé¢çš„è®¾ç½®çš„æ‰“æ€ªæ¨¡å¼
-CDG.sceneName = "è‹æ¢§ç§˜å¢ƒ" --æ‰“æ€ªåœ°å›¾
-CDG.sceneID = 698 --æ‰“æ€ªåœ°å›¾ID
-CDG.pos = m_pos1 --LoadUserScript("åæ ‡æ¸…å‰¿ä¹é»ä½™å­½") è¿™é‡ŒåŠ è½½çš„åæ ‡
-CDG.posRadius = 5 --åæ ‡åŠå¾„
+--CDG:Init() Èç¹ûÓÃÕâ¸ö³õÊ¼»¯ÓĞÎÊÌâ£¬Èç¹ûÊÇ¸úËæ¶Ó³¤£¬Ôò²»»áÖ÷¶¯È¥×ø±ê
+CDG:fubeiInit() --³õÊ¼»¯
+CDG.attack = true --ÊÇ·ñ¹¥»÷
+CDG.attackMode = UI_GetDGParam("´ò¹ÖÄ£Ê½") --»ñÈ¡½çÃæµÄÉèÖÃµÄ´ò¹ÖÄ£Ê½
+CDG.sceneName = "²ÔÎàÃØ¾³" --´ò¹ÖµØÍ¼
+CDG.sceneID = 698 --´ò¹ÖµØÍ¼ID
+CDG.pos = m_pos1 --LoadUserScript("×ø±êÇå½Ë¾ÅÀèÓàÄõ") ÕâÀï¼ÓÔØµÄ×ø±ê
+CDG.posRadius = 5 --×ø±ê°ë¾¶
 
---CDG.targetName = ""       --åªæ‰“çš„æ€ªç‰©åç§°
-CDG.targetOwer = "çº¢ç»¿" --åªæ‰“çº¢æ€ªç»¿æ€ª
+--CDG.targetName = ""       --Ö»´òµÄ¹ÖÎïÃû³Æ
+CDG.targetOwer = "ºìÂÌ" --Ö»´òºì¹ÖÂÌ¹Ö
 
-CDG.die.out = true --æ­»äº¡å‡ºçª
---CDG.die.waittime = -1     --æ­»äº¡ç­‰å¾…æ—¶é—´
-CDG.die.maxCount = 0 --æœ€å¤§æ­»äº¡æ¬¡æ•°ä¸é™åˆ¶
-CDG.savebank = false --false å¦‚æœå›åŸä¸å­˜ä»“
+CDG.die.out = true --ËÀÍö³öÇÏ
+--CDG.die.waittime = -1     --ËÀÍöµÈ´ıÊ±¼ä
+CDG.die.maxCount = 0 --×î´óËÀÍö´ÎÊı²»ÏŞÖÆ
+CDG.savebank = false --false Èç¹û»Ø³Ç²»´æ²Ö
 
---CDG.back = { buypetRation = false, buypetHappy = false, fullprop = false, fullmate = false, fullbag = false } --å›åŸæ¡ä»¶
---CDG.overMapErr = true             --åœ°å›¾ä¸åŒ¹é…ç»“æŸæ‰“æ€ª
+--CDG.back = { buypetRation = false, buypetHappy = false, fullprop = false, fullmate = false, fullbag = false } --»Ø³ÇÌõ¼ş
+--CDG.overMapErr = true             --µØÍ¼²»Æ¥Åä½áÊø´ò¹Ö
 
-AI_SetParameter("NEWOLD_daguai", 1) --æ–°æ‰“æ€ª
+AI_SetParameter("NEWOLD_daguai", 1) --ĞÂ´ò¹Ö
 
-if CDG.attackMode == "æ™®é€šæŠ¢æ€ª" or CDG.attackMode == "è¶…çº§æŠ¢æ€ª" then
-    CDG.attackMode = "é»˜è®¤æ¨¡å¼"
+if CDG.attackMode == "ÆÕÍ¨ÇÀ¹Ö" or CDG.attackMode == "³¬¼¶ÇÀ¹Ö" then
+    CDG.attackMode = "Ä¬ÈÏÄ£Ê½"
 end
 
---æ‰“æ€ªå¾ªç¯ä½“çš„å›è°ƒå‡½æ•°ï¼Œæ§åˆ¶æ‰“æ€ªç»“æŸï¼Œè¿”å›trueåˆ™ç»“æŸæ‰“æ€ª
+--´ò¹ÖÑ­»·ÌåµÄ»Øµ÷º¯Êı£¬¿ØÖÆ´ò¹Ö½áÊø£¬·µ»ØtrueÔò½áÊø´ò¹Ö
 function CDG_callback(...)
-    local nComplete = GetMissionVariableByName(m_missionName, 0) --è·å–ä»»åŠ¡çš„å®Œæˆåº¦
+    local nComplete = GetMissionVariableByName(m_missionName, 0) --»ñÈ¡ÈÎÎñµÄÍê³É¶È
     --MessageBox(nComplete)
     if nComplete ~= 0 then
-        return true --ä¸ä¸º0ï¼Œè¿”å›trueåˆ™ç»“æŸæ‰“æ€ª
+        return true --²»Îª0£¬·µ»ØtrueÔò½áÊø´ò¹Ö
     end
     return false
 end
-CDG.callfun = CDG_callback --ç»™å¾ªç¯ä½“çš„å›è°ƒå‡½æ•°èµ‹å€¼
+CDG.callfun = CDG_callback --¸øÑ­»·ÌåµÄ»Øµ÷º¯Êı¸³Öµ
 
---é€»è¾‘
+--Âß¼­
 function _SMain(...)
     while true do
-        local nComplete = GetMissionVariableByName(m_missionName, 0) --è·å–ä»»åŠ¡çš„å®Œæˆåº¦
-        if nComplete == -1 then --æ²¡æœ‰æ­¤ä»»åŠ¡
+        local nComplete = GetMissionVariableByName(m_missionName, 0) --»ñÈ¡ÈÎÎñµÄÍê³É¶È
+        if nComplete == -1 then --Ã»ÓĞ´ËÈÎÎñ
             if IsHuodongComplete(m_missionName, 1) then
-                DebugMessage(m_missionName .. " ä»Šæ—¥ä»»åŠ¡å·²ç»å®Œæˆ")
+                DebugMessage(m_missionName .. " ½ñÈÕÈÎÎñÒÑ¾­Íê³É")
                 break
             else
                 MoveToNPC(m_npc[1].x, m_npc[1].y, m_npc[1].sceneID, m_npc[1].name, nil, true, nil, false, false)
                 Sleep(600)
-                QuestFrameOptionClicked_Item("#{JXMR_171027_06}", 1, 500) --æ¸…å‰¿ï¼šä¹é»ä½™å­½
+                QuestFrameOptionClicked_Item("#{JXMR_171027_06}", 1, 500) --Çå½Ë£º¾ÅÀèÓàÄõ
                 QuestFrameAcceptClicked()
                 Sleep(600)
             end
-        elseif nComplete == 0 then --å·²æ¥ä»»åŠ¡ï¼Œæœªå®Œæˆ
-            CDG:OnStart() --å¼€å§‹æ‰“æ€ª
-        elseif nComplete == 1 then --å·²æ¥ä»»åŠ¡ï¼Œå·²ç»å®Œæˆ
-            DelBagItem(-1) --æ¸…åŒ…
-            Skill:UseSkillByName("åˆçº§éšé", -1, 300) --éšèº«
+        elseif nComplete == 0 then --ÒÑ½ÓÈÎÎñ£¬Î´Íê³É
+            CDG:OnStart() --¿ªÊ¼´ò¹Ö
+        elseif nComplete == 1 then --ÒÑ½ÓÈÎÎñ£¬ÒÑ¾­Íê³É
+            DelBagItem(-1) --Çå°ü
+            Skill:UseSkillByName("³õ¼¶Òş¶İ", -1, 300) --ÒşÉí
             MoveToNPC(m_npc[1].x, m_npc[1].y, m_npc[1].sceneID, m_npc[1].name, nil, true, nil, false, false)
             Sleep(600)
-            QuestFrameOptionClicked_Item("#{JXMR_171027_06}", 1, 500) --æ¸…å‰¿ï¼šä¹é»ä½™å­½
+            QuestFrameOptionClicked_Item("#{JXMR_171027_06}", 1, 500) --Çå½Ë£º¾ÅÀèÓàÄõ
             QuestFrameMissionComplete()
             Sleep(500)
         end
-        DebugStr("æ­£åœ¨æ¸…å‰¿ä¹é»ä½™å­½...")
+        DebugStr("ÕıÔÚÇå½Ë¾ÅÀèÓàÄõ...")
         Sleep(200)
     end
 end
 
 _SMain()
---å›åŸ
+--»Ø³Ç
 MoveTo(155, 155, 580, nil, nil, nil)
 

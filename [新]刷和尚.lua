@@ -1,6 +1,6 @@
 PushDebugMessage("#eDC4C18#cFFFF00 #81全新定制版本刷和尚，必进一次，定点守");
 local currentDay = os.date("%H:%M")
-local monkTime = {"20:40","16:30","21:30","23:00"};
+local monkTime = {"10:45","16:30","21:30","23:00"};
 local playName = GetPlayerInfo("NAME");
 local activeScene = GetActiveSceneName()
 ------------------------------------------------------
@@ -84,21 +84,21 @@ function execMonk(times)
 			break
 		end
 	end
-	if times >= "10:44" and times <= "11:00" then
-		PushDebugMessage("#eDC4C18#cFFFF00 当前时间".. times .. "已经开始刷猪了，赶快进吧");
+	if times >= "10:45" and times <= "11:00" then
+		PushDebugMessage("#eDC4C18#cFFFF00 当前时间".. times .. "已经开始刷和尚了，赶快进吧");
 		return false
-	elseif  times >= "16:29" and times <= "17:45" then
-		PushDebugMessage("#eDC4C18#cFFFF00 当前时间".. times .. "已经开始刷猪了，赶快进吧");
+	elseif  times >= "16:30" and times <= "16:45" then
+		PushDebugMessage("#eDC4C18#cFFFF00 当前时间".. times .. "已经开始刷和尚了，赶快进吧");
 		return false
-	elseif  times >= "21:29" and times <= "21:40" then
-		PushDebugMessage("#eDC4C18#cFFFF00 当前时间".. times .. "已经开始刷猪了，赶快进吧");
+	elseif  times >= "21:30" and times <= "21:43" then
+		PushDebugMessage("#eDC4C18#cFFFF00 当前时间".. times .. "已经开始刷和尚了，赶快进吧");
 		return false
-	elseif times >= "22:59" and times <= "23:15" then
-		PushDebugMessage("#eDC4C18#cFFFF00 当前时间".. times .. "已经开始刷猪了，赶快进吧");
+	elseif times >= "23:00" and times <= "23:15" then
+		PushDebugMessage("#eDC4C18#cFFFF00 当前时间".. times .. "已经开始刷和尚了，赶快进吧");
 		return false
 	else
 		等待到指定时间(times);
-		return false
+		return true
 	end
 end
 
@@ -108,14 +108,13 @@ end
 function readyExecAttackMonk(now)
 	local xpos,ypos = Player_GetPos();
 	if now > "10:44" and now < "11:00" then
-		execMonk(monkTime[1])
---	elseif now > "16:29" and now < "16:45" then
-	elseif now > "16:29" and now < "17:45" then
-		execMonk(monkTime[2])
+		return execMonk(monkTime[1])
+	elseif now > "16:29" and now < "16:45" then
+		return execMonk(monkTime[2])
 	elseif now > "21:29" and now < "21:40" then
-		execMonk(monkTime[3])
+		return execMonk(monkTime[3])
 	elseif now > "22:59" and now < "23:15" then
-		execMonk(monkTime[4])
+		return execMonk(monkTime[4])
 	else
 		PushDebugMessage("#eDC4C18#cFFFF00 当前时间".. now .. "不在刷和尚时间范围内,执行下个任务");
 		return false
@@ -130,7 +129,7 @@ while true do
 	local now=os.date("%H:%M");
 	PushDebugMessage("#eDC4C18#cFFFF00 当前时间为".. os.date("%H:%M"));	
 	local result = readyExecAttackMonk(now);
-	if result == false then
+	if result == true then
 		break;
 	else
 		readyExecAttackMonk(now);
