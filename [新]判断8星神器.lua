@@ -12,7 +12,12 @@ local players = {
 
 local m_missionName = "清剿：九黎余孽"
 local m_npc = {
-    {x = 223, y = 215, sceneID = 697, name = "汤学真", tid = 146}
+    {x = 223, y = 215, sceneID = 697, name = "汤学真", tid = 146},
+    {x = 180, y = 156, sceneID = 697, name = "汤学真", tid = 146},
+    {x = 101, y = 200, sceneID = 697, name = "汤学真", tid = 146},
+    {x = 79, y = 168, sceneID = 697, name = "汤学真", tid = 146},
+    {x = 79, y = 127, sceneID = 697, name = "汤学真", tid = 146},
+    {x = 116, y = 107, sceneID = 697, name = "汤学真", tid = 146}
 }
 
 LoadUserScript("坐标清剿九黎余孽")

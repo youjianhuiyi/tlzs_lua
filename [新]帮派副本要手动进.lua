@@ -3,11 +3,11 @@ local activeScene = GetActiveSceneName()
 local npcs = {}
 AI_SetParameter("NEWOLD_daguai", 1) --设置新打怪模式
 local position = {
-	-- {72,97},
-	-- {51,92},
+	{72,97},
+	{51,92},
 	{52,86},
-	-- {43,67},
-	-- {46,48},
+	{43,67},
+	{46,48},
 	{48,54},
 	{65,57},
 	{141,54},

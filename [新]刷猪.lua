@@ -62,64 +62,35 @@ function waitForPlayers()
 			end
 		end
 	end
-	
 end
 
-------------------------------------------------------
--- 核心方法之一，执行刷猪
-------------------------------------------------------
-function execPig(times)
-	PushDebugMessage("#eDC4C18#cFFFF00 当前时间为：".. times .. "准备开始刷猪");
-	for p_key,p_value in ipairs(pos) do
-		PushDebugMessage(p_value[1])
-		PushDebugMessage(activeScene)
-		if activeScene == p_value[1] then
-			执行脚本("[功能] 回城")
-			waitForPlayers();
+--取周围的队伍成员,包括自己
+--	返回值1：整数型		周围队伍成员数量
+--	返回值2：成员数组   
+--	参数1：周围的范围距离
+local nCount,tObj = Team:GetSurroundMember(15)
+
+waitForPlayers()
+local now=os.date("%H:%M");
+--{"14:00","22:50"}
+while true do
+	if nCount == 6 then
+		if now > "13:50" and now < "14:20" then
+			if playName == "逗逗．や" or  playName == "ぁ壹葉醬油あ" or  playName == "平凡の" or  playName == "Se⒎蕝蝂哥℡" or  playName == "暒涳芐哋埖焱" or  playName == "．Lynthia" then
+				Player_TeamFollow(true) --组队跟随
+			end
+			break
+		elseif now > "21:50" and now < "22:15" then
+			if playName == "逗逗．や" or  playName == "ぁ壹葉醬油あ" or  playName == "平凡の" or  playName == "Se⒎蕝蝂哥℡" or  playName == "暒涳芐哋埖焱" or  playName == "．Lynthia" then
+				Player_TeamFollow(true) --组队跟随
+			end
 			break
 		else
-			waitForPlayers();
-			break
+			PushDebugMessage("#eDC4C18#cFFFF00 当前时间".. now .. "不在刷和尚时间范围内,执行下个任务");
 		end
-	end
-	if times >= "13:58" and times <= "14:20" then
-		PushDebugMessage("#eDC4C18#cFFFF00 当前时间".. times .. "已经开始刷猪了，赶快进吧");
-		return false
-	elseif times >= "21:45" and times <= "22:15" then
-		PushDebugMessage("#eDC4C18#cFFFF00 当前时间".. times .. "已经开始刷猪了，赶快进吧");
-		return false
 	else
-		等待到指定时间(times);
-		return true
-	end
-end
-
-------------------------------------------------------
--- 核心方法，执行刷猪
-------------------------------------------------------
-function readyExecAttackPig(now)
-	local xpos,ypos = Player_GetPos();
-	if now >= "13:58" and now <= "14:20" then
-		return execPig(pigTime[1])
-	elseif now >= "21:45" and now <= "22:15" then
-		return execPig(pigTime[2])
-	else
-		PushDebugMessage("#eDC4C18#cFFFF00 当前时间".. now .. "不在刷猪时间范围内,执行下个任务");
-		return false
+		waitForPlayers()
 	end
 end
 
 
-------------------------------------------------------
--- 循环调用执行刷猪，如果返回为false的时候就停止
-------------------------------------------------------
-while true do
-	local now=os.date("%H:%M");
-	PushDebugMessage("#eDC4C18#cFFFF00 当前时间为".. os.date("%H:%M"));	
-	local result = readyExecAttackPig(now);
-	if result == true then 
-		break;
-	else
-		readyExecAttackPig(now);
-	end
-end

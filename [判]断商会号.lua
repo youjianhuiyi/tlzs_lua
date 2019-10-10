@@ -23,6 +23,8 @@ function judgePlayers()
 		"多情的小男人",
 		"追逐ゝ",
 		"至若",
+		"XX丶 ",
+		"Eternally｀L",
 	};
 
 	for key,value in ipairs(players)
