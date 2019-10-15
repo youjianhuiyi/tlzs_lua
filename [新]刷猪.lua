@@ -55,12 +55,11 @@ function waitForPlayers()
 				if xpos.. "|" .. ypos ~= pos[num][1].. "|" .. pos[num][2] then
 					¿çÍ¼Ñ°Â·("Ê¥ÊÞÉ½",pos[num][1],pos[num][2]);
 					Sleep(1000)
-					break;
-				else
-					break;
+					return true;
 				end
 			end
 		end
+		return false;
 	end
 end
 

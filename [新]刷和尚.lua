@@ -58,12 +58,11 @@ function waitForPlayers()
 				if xpos.. "|" .. ypos ~= pos[num][2].. "|" .. pos[num][3] then
 					¿çÍ¼Ñ°Â·(pos[num][1],pos[num][2],pos[num][3]);
 					Sleep(1000)
-					break;
-				else
-					break;
+					return true;
 				end
 			end
 		end
+		return false;
 	end
 end
 
@@ -80,7 +79,6 @@ local now=os.date("%H:%M");
 --{"14:00","22:50"}
 while true do
 	if nCount == 6 then
-
 		if now >= "10:45" and now <= "11:00" then
 			if playName == "¶º¶º£®¤ä" or  playName == "¤¡Ò¼È~áuÓÍ¤¢" or  playName == "Æ½·²¤Î" or  playName == "Se¢·Ê…ÎZ¸ç©Y" or  playName == "•¦›ïÆS†OˆµìÍ" or  playName == "£®Lynthia" then
 				Player_TeamFollow(true) --×é¶Ó¸úËæ
