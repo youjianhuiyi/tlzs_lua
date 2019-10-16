@@ -49,60 +49,55 @@ function waitForPlayers()
 			elseif key >= 31 and key <= 36 then
 				num = 6
 			end
-			PushDebugMessage(value)
+			
 			PushDebugMessage("准备去定点刷和尚地图".. pos[num][1].."坐标为："..pos[num][2]..","..pos[num][3]);
 			Sleep(500)
 			local xpos,ypos = Player_GetPos();
-			PushDebugMessage(xpos.."--"..ypos)
-			while true do
-				if xpos.. "|" .. ypos ~= pos[num][2].. "|" .. pos[num][3] then
-					跨图寻路(pos[num][1],pos[num][2],pos[num][3]);
-					Sleep(1000)
-					return true;
-				end
+			if xpos.. "|" .. ypos ~= pos[num][2].. "|" .. pos[num][3] then
+				跨图寻路(pos[num][1],pos[num][2],pos[num][3]);
+				Sleep(1000)
+				break;
 			end
 		end
-		return false;
 	end
 end
 
 
+function judgeTeamer(time)
+	if playName == "逗逗．や" or  playName == "ぁ壹葉醬油あ" or  playName == "平凡の" or  playName == "Se⒎蕝蝂哥℡" or  playName == "暒涳芐哋埖焱" or  playName == "．Lynthia" then
+		Player_TeamFollow(true) --组队跟随
+		Sleep(500)
+	end
+	等待到指定时间(time)
+	执行脚本("藏经阁(和尚)")
+end
 
---取周围的队伍成员,包括自己
---	返回值1：整数型		周围队伍成员数量
---	返回值2：成员数组   
---	参数1：周围的范围距离
-local nCount,tObj = Team:GetSurroundMember(15)
-
+-- 核心调用
 waitForPlayers()
-local now=os.date("%H:%M");
---{"14:00","22:50"}
 while true do
+	local now=os.date("%H:%M");
+	--取周围的队伍成员,包括自己
+	--	返回值1：整数型		周围队伍成员数量
+	--	返回值2：成员数组   
+	--	参数1：周围的范围距离
+	local nCount,tObj = Team:GetSurroundMember(5)
+	Sleep(500)
+	PushDebugMessage("本队已经来了" .. nCount .. "人")
+	Sleep(500)
 	if nCount == 6 then
-		if now >= "10:45" and now <= "11:00" then
-			if playName == "逗逗．や" or  playName == "ぁ壹葉醬油あ" or  playName == "平凡の" or  playName == "Se⒎蕝蝂哥℡" or  playName == "暒涳芐哋埖焱" or  playName == "．Lynthia" then
-				Player_TeamFollow(true) --组队跟随
-			end
-			break
-		elseif  now >= "16:30" and now <= "16:45" then
-			if playName == "逗逗．や" or  playName == "ぁ壹葉醬油あ" or  playName == "平凡の" or  playName == "Se⒎蕝蝂哥℡" or  playName == "暒涳芐哋埖焱" or  playName == "．Lynthia" then
-				Player_TeamFollow(true) --组队跟随
-			end
-			break
-		elseif  now >= "21:30" and now <= "21:43" then
-			if playName == "逗逗．や" or  playName == "ぁ壹葉醬油あ" or  playName == "平凡の" or  playName == "Se⒎蕝蝂哥℡" or  playName == "暒涳芐哋埖焱" or  playName == "．Lynthia" then
-				Player_TeamFollow(true) --组队跟随
-			end
-			break
-		elseif now >= "23:00" and now <= "23:15" then
-			if playName == "逗逗．や" or  playName == "ぁ壹葉醬油あ" or  playName == "平凡の" or  playName == "Se⒎蕝蝂哥℡" or  playName == "暒涳芐哋埖焱" or  playName == "．Lynthia" then
-				Player_TeamFollow(true) --组队跟随
-			end
-			break
+		if now >= "10:40" and now <= "11:00" then
+			judgeTeamer("10:45")
+		elseif  now >= "16:25" and now <= "16:45" then
+			judgeTeamer("16:30")
+		elseif  now >= "21:00" and now <= "21:43" then
+			judgeTeamer("21:30")
+		elseif now >= "22:55" and now <= "23:15" then
+			judgeTeamer("23:00")
 		else
+			Player_TeamFollow(true)
 			PushDebugMessage("#eDC4C18#cFFFF00 当前时间".. now .. "不在刷和尚时间范围内,执行下个任务");
-			break
 		end
+		break;
 	else
 		waitForPlayers()
 	end
