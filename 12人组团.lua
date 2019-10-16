@@ -63,8 +63,11 @@ function judgeTeamPlayers(key1,key2)
 			masterNum = masterNum + 1
 		end
 	end
+	Sleep(1000)
 	-- 判断申请需要进团的队伍到齐之后，则退出当前团队
+
 	if masterNum >= 6 then
+		Sleep(5000)
 		--退出队伍
 		Team:LeaveTeam()
 		return true

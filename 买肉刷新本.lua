@@ -4,10 +4,10 @@ function checkNPCDst()
     tObj = ObjFilterByClass(tObj, {1, 0, 0, 0, 0})
 	for i = 1, #Obj do
 		local tmp = Obj[i]
-		if tmp.name == "云渺渺" and tonumber(tmp.dst) <= 3 then
+		if tmp.name == "云兮兮" and tonumber(tmp.dst) <= 3 then
 			return true
 		else
-            MoveToNPC(275,295,LUOYANG_ID,"云渺渺");Sleep(50)
+            MoveToNPC(109,121,246,"云兮兮");Sleep(50)
 		end
     end
     return false
@@ -15,8 +15,8 @@ end
 
 
 function buyPetEats()
-    MoveToNPC(275,295,LUOYANG_ID,"云渺渺");Sleep(1000)
-    QuestFrameOptionClicked("购买珍兽用品");Sleep(1000)
+    MoveToNPC(109,121,246,"云兮兮");Sleep(500)
+    QuestFrameOptionClicked("看看你卖的东西");Sleep(500)
     输入屏幕文本("#eDC4C18#cFFFF00买指定数量的肉与快乐度物品，准备刷新副本")
     for i = 1,2 do
         --下一页
