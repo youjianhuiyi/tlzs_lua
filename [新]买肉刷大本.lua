@@ -18,14 +18,16 @@ function buyPetEats()
     MoveToNPC(109,121,246,"云兮兮");Sleep(500)
     QuestFrameOptionClicked("看看你卖的东西");Sleep(500)
     输入屏幕文本("#eDC4C18#cFFFF00买指定数量的肉与快乐度物品，准备刷新副本")
-    --下一页
-    GetLuaValue("setmetatable(_G, {__index = Shop_Env});Booth_PageDown();","",0);Sleep(500);
-    --批量购买
-    GetLuaValue("setmetatable(_G, {__index = Shop_Env});Booth_BuyMult();","",0);Sleep(500);
-    --买快乐度
-    GetLuaValue("setmetatable(_G, {__index = Shop_Env});GoodButton_Clicked(6);","",0);Sleep(500);
-    --买两次
-    GetLuaValue("setmetatable(_G, {__index = Shop_BulkBuyingEx_Env});Shop_BulkBuying_Accept_Ex_Clicked();","",0);Sleep(500);
+    for i = 1,2 do
+        --下一页
+        GetLuaValue("setmetatable(_G, {__index = Shop_Env});Booth_PageDown();","",0);Sleep(500);
+        --批量购买
+        GetLuaValue("setmetatable(_G, {__index = Shop_Env});Booth_BuyMult();","",0);Sleep(500);
+        --买后腿肉
+        GetLuaValue("setmetatable(_G, {__index = Shop_Env});GoodButton_Clicked(6);","",0);Sleep(500);
+        --买两次
+        GetLuaValue("setmetatable(_G, {__index = Shop_BulkBuyingEx_Env});Shop_BulkBuying_Accept_Ex_Clicked();","",0);Sleep(500);
+    end
     --上一页
     GetLuaValue("setmetatable(_G, {__index = Shop_Env});Booth_PageUp();","",0);Sleep(500);
     --批量购买
@@ -60,6 +62,6 @@ buyPetEats()
 
 --下面是销毁6次，物品名写在下面
 --大概5秒钟销毁一次
---for i = 1,2 do
---	destroyItem();
---end
+for i = 1,2 do
+	destroyItem();
+end
