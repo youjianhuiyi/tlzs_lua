@@ -17,7 +17,7 @@ end
 function buyPetEats()
     MoveToNPC(109,121,246,"云兮兮");Sleep(500)
     QuestFrameOptionClicked("看看你卖的东西");Sleep(500)
-    输入屏幕文本("#eDC4C18#cFFFF00买指定数量的肉与快乐度物品，准备刷新副本")
+    PushDebugMessage("#eDC4C18#cFFFF00买指定数量的肉与快乐度物品，准备刷新副本")
     --下一页
     GetLuaValue("setmetatable(_G, {__index = Shop_Env});Booth_PageDown();","",0);Sleep(500);
     --批量购买
@@ -34,7 +34,9 @@ function buyPetEats()
     GetLuaValue("setmetatable(_G, {__index = Shop_Env});GoodButton_Clicked(4);","",0);Sleep(500);
     --买最大
     GetLuaValue("setmetatable(_G, {__index = Shop_BulkBuyingEx_Env});Shop_BulkBuying_Max_Ex_Clicked();","",0);Sleep(500);
+
     GetLuaValue("setmetatable(_G, {__index = Shop_BulkBuyingEx_Env});Shop_BulkBuying_Max_Ex_Clicked();","",0);Sleep(200)
+
     GetLuaValue("setmetatable(_G, {__index = Shop_BulkBuyingEx_Env});Shop_BulkBuying_Accept_Ex_Clicked();","",0);Sleep(500);
     PushDebugMessage("买肉结束，准备开刷")
 end
@@ -51,7 +53,6 @@ function destroyItem()
 			Sleep(10);
 		end
 	end
-	
 end
 
 --核心调用

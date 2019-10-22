@@ -65,7 +65,14 @@ function judgeTeamer(time)
 		Player_TeamFollow(true) --组队跟随
 		Sleep(500)
 	end
-	等待到指定时间(time)
+	local str1 = time;
+	local str2 = os.date("%H:%M:%S");
+	local h1,m1,s1 = string.match(str1,"(%d+):(%d+):(%d+)")
+	local h2,m2,s2 = string.match(str2,"(%d+):(%d+):(%d+)")
+	local time1 = h1*3600+m1*60+s1
+	local time2 = h2*3600+m2*60+s2
+	time3 = (time2 - time1)*1000
+	Sleep(time2 - time1)
 	执行脚本("野猪暴走(圣兽山)")
 end
 
@@ -79,9 +86,9 @@ while true do
 	local nCount,tObj = Team:GetSurroundMember(15)
 	if nCount == 6 then
 		if now > "13:50" and now < "14:20" then
-			judgeTeamer("14:00")
+			judgeTeamer("14:00:00")
 		elseif now > "21:50" and now < "22:15" then
-			judgeTeamer("21:30")
+			judgeTeamer("21:30:00")
 		else
 			PushDebugMessage("#eDC4C18#cFFFF00 当前时间".. now .. "不在刷和尚时间范围内,执行下个任务");
 		end
