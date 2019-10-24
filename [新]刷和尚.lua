@@ -74,8 +74,8 @@ function judgeTeamer(time)
 	local h2,m2,s2 = string.match(str2,"(%d+):(%d+):(%d+)")
 	local time1 = h1*3600+m1*60+s1
 	local time2 = h2*3600+m2*60+s2
-	time3 = (time2 - time1)*1000
-	Sleep(time2 - time1)
+	time3 = (time1 - time2)*1000
+	Sleep(time3)
 	执行脚本("藏经阁(和尚)")
 end
 
