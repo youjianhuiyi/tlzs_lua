@@ -62,6 +62,6 @@ buyPetEats()
 
 --下面是销毁6次，物品名写在下面
 --大概5秒钟销毁一次
-for i = 1,2 do
+for i = 1,4 do
 	destroyItem();
 end

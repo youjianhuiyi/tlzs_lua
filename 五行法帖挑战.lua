@@ -1,11 +1,12 @@
 ------- 开始----------------------------------
 输入屏幕文本("#eDC4C18#cFFFF00开始自动扫荡虚空")
-
---local g_szItemName = AI_GetParameter("仓库取物")
-
---Bank_GetItem(g_szItemName,-1)
-
---local nCnt = Bank_GetItem(" 五行法帖 ", 500,0)
+local g_szItemName = AI_GetParameter("仓库取物")
+	--参数1：需取出的物品名称 ，空格分开
+	--参数2：取出的数量
+	--参数3：需取出的绑定状态 0无所谓 1不绑的 2绑定的 可空
+	--参数4：整理背包 true 或 false 可空
+	--参数5：需取出的锁定状态 0无所谓 1不绑的 2绑定的 可空
+local nCnt = Bank_GetItem(" 五行法帖 ",1000,1,true)
 -----开始----------------------
 local MapName = GetActiveSceneName()
 --判断角色当前所在地图，就近领取任务
@@ -24,7 +25,7 @@ end
 QuestFrameOptionClicked("挑战虚空幻境",1); Sleep(1000)
 for i = 0, 50 do
     GetLuaValue("setmetatable(_G, {__index = DanrenFB_Env});DanrenFB_SaoDang_Clicked();","",0)
-	等待(50)
+	等待(500)
 	输入屏幕文本("#eDC4C18#cFFFF00自动扫荡虚空结束")
 end
 执行脚本("销买存")

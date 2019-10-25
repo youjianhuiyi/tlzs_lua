@@ -90,7 +90,33 @@ function _SMain(...)
     end
 end
 
+
+
+local DropCommonItem = {"后肘肉口粮","蝗虫口粮","棕榈口粮"}
+
+function destroyItem()
+	for key,value in ipairs(DropCommonItem) do
+		local bFind, nIndex = Bag:FindBagItem_DJ(value,0)
+		if bFind == true and nIndex ~= -1 then
+			PushDebugMessage("销毁物品名称： [" .. value.."]");
+			-- 等待(50)
+			CallFun(5,nIndex);
+			Sleep(10);
+		end
+	end
+	
+end
+
+
+--下面是销毁6次，物品名写在下面
+--大概5秒钟销毁一次
+for i = 1,6 do
+	destroyItem();
+end
+
+
 _SMain()
 --回城
 MoveTo(155, 155, 580, nil, nil, nil)
-
+Sleep(1000)
+跨图寻路("洛阳",347,249)
