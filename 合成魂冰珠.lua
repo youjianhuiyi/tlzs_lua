@@ -1,6 +1,6 @@
 --核心数量
-local level = 4
-local num = 1
+local level = 4 --合成魂冰珠的等级，
+local num = 1 -- 合成魂冰珠的数量
 PushDebugMessage("#eDC4C18#cFFFF00前往大理-武桐-魂冰珠合成")
 MoveToNPC(139, 197,2, "武桐")
 Sleep(1000)
