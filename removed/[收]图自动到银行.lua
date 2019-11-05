@@ -2,27 +2,6 @@
 local MapName = GetActiveSceneName()
 --判断角色当前所在地图，就近领取任务
 local flag = true
-local n = 0
-local m = 0
-local players = {
-	--第一队 追逐ゝ
-	{name = "追逐ゝ",num1 = 30,num2 = 25},
-	{name = "多情的小男人",num1 = 26,num2 = 26},
-	{name = "Eternally°L",num1 = 26,num2 = 26},
-	{name = "Eternally｀L",num1 = 30,num2 = 30},
-	{name = "Eternally＇L",num1 = 26,num2 = 26},
-	{name = "大雪紛飛丶",num1 = 25,num2 = 25},
-	--第二队
-	{name = "獨自一人丶",num1 = 25,num2 = 25},
-}
-
--- 仓库取图逻辑
-function getTu(num)
-	local strItem = AI_GetParameter_User("取图挖图")
-	strItem = " " .. strItem .. " " 
-	PushDebugMessage("取出物品：" .. strItem)
-	Bank_GetItem(strItem, num)
-end
 
 -- 仓库取图到帮会NPC处
 function goGuildNPC()
@@ -81,6 +60,7 @@ function checkNPCDst()
 	end
 end
 
+
 --[[获取道具栏背包里面的物品并且往对应格子里面扔物品--]]
 function findBaseItemsToBank()
 	--通过获取当前背包的空余空间来取物品
@@ -107,6 +87,7 @@ function findBaseItemsToBank()
     end 
 end
 
+
 -- 往银行扔藏宝图
 function throwTreasureMap()
 	--判断是否在银行NPC附近。判断是否打开
@@ -118,7 +99,7 @@ function throwTreasureMap()
 	--收图操作，固定收图120张之后直接 停止 收图。直接 往银行扔图
 	--checkNPCDst()
 	-- 放图到第2个-第4个箱
-	for i = 1,5 do
+	for i =1,5 do
 		checkNPCDst()
 		GetLuaValue("setmetatable(_G, {__index = Banghui_Bank_Env});Banghui_Bank_patulousBox_Clicked(".. i ..");","",0)
 		Sleep(100)
@@ -126,56 +107,6 @@ function throwTreasureMap()
 		if checkBag() then
 			break
 		end
-	end
-	
-end
-
--- 获取背包被占用的格子数量
-function getItemNum()
-	local tObj = Bag:EnumAllObj()
-	for i = 1, #tObj do
-		local tmp = tObj[i]
-		if tmp.index <= 29 then 
-			n = n + 1
-		elseif tmp.index > 29 and tmp.index < 60 then 
-			m = m + 1
-		end
-	end
-	return {bag1 = n,bag2 = m}
-end
-
---获取角色一共有多少个格子
-function getPlayerBagNums()
-    playName = GetPlayerInfo("NAME")
-	for key,value in ipairs(players) do
-		if playName == value.name then
-			--MessageBox(value.name .. '--有--' .. value.num .. ' 格子')
-			--获取角色一共有多少个空格子,
-			result = getItemNum()
-			hasNum1 = value.num1 - result.bag1  -- 物品栏空格子数量
-			hasNum2 = value.num2 - result.bag2 -- 材料栏空格子数量
-			num1 = value.num1
-			num2 = value.num2
-			--MessageBox(value.name .. '--有--' .. hasNum1 .. ' 格子'.. hasNum2 .. ' 格子')
-		end
-	end
-	
-	return {bag1=hasNum1,bag2=hasNum2,bag1Ori = num1,bag2Ori = num2}
-end
-
--- 取图
-function getMaps()
-	result = getPlayerBagNums()
-	getTu(result.bag1Ori)
-	result1 = getPlayerBagNums()
-	if result1.bag1 == 0 then
-		--toGuild()
-		return true
-	else
-		LoadScript("fn商会.lua") --需要先加载这个模块
-		SHQW_OnStart("333", "藏宝图|".. result1.bag1 .."|1") --取出所有藏宝图(可取上架中的)
-		--toGuild()
-		return true
 	end
 end
 
@@ -191,15 +122,7 @@ end
 
 
 -- 核心调用，
-
 while true do
-	-- 取图逻辑
-	if getMaps() ~= true then 
-		break
-	end
-	
-	Sleep(500)
-	
 	-- 检测背包
 	if checkBag() == true then 
 		break
@@ -216,10 +139,4 @@ while true do
 		end
 	end	
 end
---支持输入负数 例：local nNeedMoney = -5*10000,表示仓库只保留5金，其他全部取出来,可用于将多余金币交易给老板
--- 默认取5J 自己可修改
-local nNeedMoney = -1
---下面的看不懂不要改
-PushDebugMessage("留1铜翻本")
-Bank_GetMoney(nNeedMoney)
------结束----------------------
+

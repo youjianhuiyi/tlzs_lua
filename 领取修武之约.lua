@@ -1,18 +1,18 @@
 function AutoGet()
-    PushDebugMessage("#eDC4C18#cFFFF00 è‡ªåŠ¨é¢†å–ä¿®æ­¦ä¹‹çº¦")
-	GetLuaValue("setmetatable(_G, {__index = PlayerQuicklyEnter_Env});PlayerQuicklyEnter_Clicked(15);","",0);Sleep(1000);--æ‰“å¼€ç­¾åˆ°ç•Œé¢
-	GetLuaValue("setmetatable(_G, {__index = Fuli_MonthlySign_Env});Fuli_MonthlySign_Button10_Click();","",0);Sleep(1000);--ç‚¹å‡»åˆ‡æ¢åˆ°ä¿®æ­¦ä¹‹çº¦
+    PushDebugMessage("#eDC4C18#cFFFF00 ×Ô¶¯ÁìÈ¡ĞŞÎäÖ®Ô¼")
+	GetLuaValue("setmetatable(_G, {__index = PlayerQuicklyEnter_Env});PlayerQuicklyEnter_Clicked(15);","",0);Sleep(1000);--´ò¿ªÇ©µ½½çÃæ
+	GetLuaValue("setmetatable(_G, {__index = Fuli_MonthlySign_Env});Fuli_MonthlySign_Button10_Click();","",0);Sleep(1000);--µã»÷ÇĞ»»µ½ĞŞÎäÖ®Ô¼
 	for i = 1 ,10 do
-		GetLuaValue("setmetatable(_G, {__index = Fuli_ZhanLing_Env});Fuli_ZhanLing_GetPrize(".. i ..",0)","",0);Sleep(1000);--ç‚¹å‡»é¢†å–
+		GetLuaValue("setmetatable(_G, {__index = Fuli_ZhanLing_Env});Fuli_ZhanLing_GetPrize(".. i ..",0)","",0);Sleep(1000);--µã»÷ÁìÈ¡
 	end
 end
 
 
 function findItem()
 	while true do
-		local bFind, nIndex = Bag:FindBagItem_DJ("ç¦é™ä»¤",0)
+		local bFind, nIndex = Bag:FindBagItem_DJ("¸£½µÁî",0)
 		if bFind == true and nIndex ~= -1 then
-			PushDebugMessage("æŸ¥æ‰¾ç‰©å“åç§°ï¼š [ç¦é™ä»¤]");
+			PushDebugMessage("²éÕÒÎïÆ·Ãû³Æ£º [¸£½µÁî]");
 			AutoExp()
 			Sleep(10);
 		else
@@ -22,5 +22,5 @@ function findItem()
 	return false;
 end
 
---æ ¸å¿ƒè°ƒç”¨
+--ºËĞÄµ÷ÓÃ
 AutoGet()

@@ -1,19 +1,18 @@
-
 function AutoExp()
-    PushDebugMessage("#eDC4C18#cFFFF00è‡ªåŠ¨åƒç¦é™å¤©é¾™ç»éªŒ")
-	GetLuaValue("setmetatable(_G, {__index = PlayerQuicklyEnter_Env});PlayerQuicklyEnter_Clicked(9);","",0);Sleep(1000);--æ‰“å¼€ç¦é™å¤©é¾™ç•Œé¢
-	GetLuaValue("setmetatable(_G, {__index = FuJiangTianLongHD_Env});FuJiangTianLongHD_DoBless();","",0);Sleep(1000);--ç‚¹å‡» ç¥ˆç¦æŒ‰é’®
-	GetLuaValue("setmetatable(_G, {__index = MessageBox_Self_Env});MessageBox_Self_Cancel_Clicked(1);","",0);Sleep(1000);--ç‚¹å‡»ç¡®å®šæŒ‰é’®
-	GetLuaValue("setmetatable(_G, {__index = MessageBox_Self_Env});MessageBox_Self_OK_Clicked();","",0);Sleep(1000);--ç‚¹å‡»ç¡®å®šæŒ‰é’®
-	GetLuaValue("setmetatable(_G, {__index = FuJiangTianLongHD_Env});FuJiangTianLongHD_OnHiden();","",0);Sleep(1000);--ç‚¹å‡»å…³é—­æŒ‰é’®
+    PushDebugMessage("#eDC4C18#cFFFF00×Ô¶¯³Ô¸£½µÌìÁú¾­Ñé")
+	GetLuaValue("setmetatable(_G, {__index = PlayerQuicklyEnter_Env});PlayerQuicklyEnter_Clicked(9);","",0);Sleep(1000);--´ò¿ª¸£½µÌìÁú½çÃæ
+	GetLuaValue("setmetatable(_G, {__index = FuJiangTianLongHD_Env});FuJiangTianLongHD_DoBless();","",0);Sleep(1000);--µã»÷ Æí¸£°´Å¥
+	GetLuaValue("setmetatable(_G, {__index = MessageBox_Self_Env});MessageBox_Self_Cancel_Clicked(1);","",0);Sleep(1000);--µã»÷È·¶¨°´Å¥
+	GetLuaValue("setmetatable(_G, {__index = MessageBox_Self_Env});MessageBox_Self_OK_Clicked();","",0);Sleep(1000);--µã»÷È·¶¨°´Å¥
+	GetLuaValue("setmetatable(_G, {__index = FuJiangTianLongHD_Env});FuJiangTianLongHD_OnHiden();","",0);Sleep(1000);--µã»÷¹Ø±Õ°´Å¥
 end
 
 
 function findItem()
 	while true do
-		local bFind, nIndex = Bag:FindBagItem_DJ("ç¦é™ä»¤",0)
+		local bFind, nIndex = Bag:FindBagItem_DJ("¸£½µÁî",0)
 		if bFind == true and nIndex ~= -1 then
-			PushDebugMessage("æŸ¥æ‰¾ç‰©å“åç§°ï¼š [ç¦é™ä»¤]");
+			PushDebugMessage("²éÕÒÎïÆ·Ãû³Æ£º [¸£½µÁî]");
 			AutoExp()
 			Sleep(10);
 		else
@@ -23,5 +22,5 @@ function findItem()
 	return false;
 end
 
---æ ¸å¿ƒè°ƒç”¨
+--ºËĞÄµ÷ÓÃ
 findItem()
