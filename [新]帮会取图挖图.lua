@@ -52,7 +52,6 @@ function getPlayerBagNums()
 			return value.num1,value.num2
 		end
 	end
-	return false;
 end
 
 -- 获取背包空格子数量
