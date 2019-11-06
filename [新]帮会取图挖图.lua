@@ -42,6 +42,13 @@ local players = {
 		{name = "﹏紫．骄傲ゝ",	num1 = 30,num2 = 30},
 		{name = "．Lynthia",	num1 = 30,num2 = 30},
 		{name = "多情的小男人",	num1 = 26,num2 = 26},
+		--挖图一队号
+		{name = "多情的小男人",	num1 = 26,num2 = 26},
+		{name = "至若",	num1 = 26,num2 = 26},
+		{name = "轩轩·",	num1 = 25,num2 = 30},
+		{name = "XX丶",	num1 = 26,num2 = 26},
+		{name = "追逐ゝ",	num1 = 30,num2 = 28},
+		{name = " Eternally｀L",	num1 = 30,num2 = 30},
 	}
 
 --获取角色有多少个格子
