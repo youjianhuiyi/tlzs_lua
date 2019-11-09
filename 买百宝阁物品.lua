@@ -15,8 +15,6 @@ else
 	MoveToNPC(237,236,0,"范纯仁");Sleep(1000)
 end
 
-
-
 -- 判断是否到达NPC附近
 function checkNPCDst()
 	local Obj = Enum2XAllObj()
@@ -35,7 +33,6 @@ function checkNPCDst()
 end
 
 
-
 -- 根据角色需要买不同的物品
 function BuyItemJudgeUsers()
 	PushDebugMessage("#eDC4C18#cFFFF00 #81购买百宝阁开始")
@@ -46,11 +43,11 @@ function BuyItemJudgeUsers()
 	--Players1表示令牌物品全不要买
 	--[[local Players1 = {"逗逗．や","情定三世丶"};--]]
 	--Players2表示令牌物品全要买
-	local Players2 = {"梵魚ˇ ","﹎素颜．や","平凡の","．波少ヽ","丶漫步ゾ天龙","Se⒎蕝蝂哥℡","°﹎紫龍ヤ","TH－莫囄","小叶丶绝杀"};
+	local Players2 = {"梵魚ˇ ","平凡の","．波少ヽ","丶漫步ゾ天龙","TH－莫囄"};
 	--Players3表示令牌买唤灵液
-	local Players3 = {"′雪走"};
+	local Players3 = {"′雪走","°﹎紫龍ヤ"};
 	--Players4表示令牌买天荒晶石
-	local Players4 = {"灬枫ヽ昕℃ ","しF笑天Dす"," °凌筱雨．≈","╰☆TeaR陌ゝ","超级↑→奶妈","Am°惜你若命","ら﹏笨呆呆°","天子月","﹏紫．骄傲ゝ","．Lynthia","轻狂∴小可","雨林之后","红颜傲﹡．"};
+	local Players4 = {"灬枫ヽ昕℃ ","小叶丶绝杀","Se⒎蕝蝂哥℡","しF笑天Dす","╰☆TeaR陌ゝ","超级↑→奶妈","Am°惜你若命","．Lynthia","轻狂∴小可","雨林之后","红颜傲﹡．"};
 	
 	--Players2表示令牌物品全要买
 	for key,value in ipairs(Players2) do
@@ -107,8 +104,10 @@ end
 
 -- 买其他物品
 function buyOthers()
-	for i = 1, 16 do
-		if i ~= 1 or i ~= 2 or i ~= 5 or i ~= 9 or i ~= 10 then 
+	for i = 3, 16 do
+		if i == 1 or i == 2 or i == 5 or i == 9 or i == 10 then 
+			break;
+		else
 			for j=1, 6 do
 				GetLuaValue("setmetatable(_G, {__index=BangHui_Shop_Env});BangHui_Shop_GoodButton_Clicked(".. i ..");","",0);
 				Sleep(1000)

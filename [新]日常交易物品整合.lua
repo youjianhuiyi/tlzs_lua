@@ -26,7 +26,7 @@ function main()
 	--参数3：需取出的绑定状态 0无所谓 1不绑的 2绑定的 可空
 	--参数4：整理背包 true 或 false 可空
 	--参数5：需取出的锁定状态 0无所谓 1不绑的 2绑定的 可空
-	local nCnt = Bank_GetItem(items,1000,1,true)
+	local nCnt = Bank_GetItem(items, 31, 1, true)
 	for i = 1 , 4 do
 		执行脚本("交易给老板号");Sleep(100);
 	end
