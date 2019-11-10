@@ -6,7 +6,7 @@ local g_szItemName = AI_GetParameter("仓库取物")
 	--参数3：需取出的绑定状态 0无所谓 1不绑的 2绑定的 可空
 	--参数4：整理背包 true 或 false 可空
 	--参数5：需取出的锁定状态 0无所谓 1不绑的 2绑定的 可空
-local nCnt = Bank_GetItem(" 五行法帖 ", 31, 1)
+local nCnt = Bank_GetItem(" 五行法帖 ", 31, 2)
 -----开始----------------------
 local MapName = GetActiveSceneName()
 --判断角色当前所在地图，就近领取任务
