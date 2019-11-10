@@ -109,7 +109,37 @@ function buyOthers()
 			break;
 		else
 			for j=1, 6 do
-				GetLuaValue("setmetatable(_G, {__index=BangHui_Shop_Env});BangHui_Shop_GoodButton_Clicked(".. i ..");","",0);
+				GetLuaValue("setmetatable(_G, {__index=BangHui_Shop_Env});BangHui_Shop_GoodButton_Clicked(3);","",0);
+				Sleep(1000)
+				MessageBox_Self_OK_Clicked()
+				GetLuaValue("setmetatable(_G, {__index=BangHui_Shop_Env});BangHui_Shop_GoodButton_Clicked(4);","",0);
+				Sleep(1000)
+				MessageBox_Self_OK_Clicked()
+				GetLuaValue("setmetatable(_G, {__index=BangHui_Shop_Env});BangHui_Shop_GoodButton_Clicked(6);","",0);
+				Sleep(1000)
+				MessageBox_Self_OK_Clicked()
+				GetLuaValue("setmetatable(_G, {__index=BangHui_Shop_Env});BangHui_Shop_GoodButton_Clicked(7);","",0);
+				Sleep(1000)
+				MessageBox_Self_OK_Clicked()
+				GetLuaValue("setmetatable(_G, {__index=BangHui_Shop_Env});BangHui_Shop_GoodButton_Clicked(8);","",0);
+				Sleep(1000)
+				MessageBox_Self_OK_Clicked()
+				GetLuaValue("setmetatable(_G, {__index=BangHui_Shop_Env});BangHui_Shop_GoodButton_Clicked(11);","",0);
+				Sleep(1000)
+				MessageBox_Self_OK_Clicked()
+				GetLuaValue("setmetatable(_G, {__index=BangHui_Shop_Env});BangHui_Shop_GoodButton_Clicked(12);","",0);
+				Sleep(1000)
+				MessageBox_Self_OK_Clicked()
+				GetLuaValue("setmetatable(_G, {__index=BangHui_Shop_Env});BangHui_Shop_GoodButton_Clicked(13);","",0);
+				Sleep(1000)
+				MessageBox_Self_OK_Clicked()
+				GetLuaValue("setmetatable(_G, {__index=BangHui_Shop_Env});BangHui_Shop_GoodButton_Clicked(14);","",0);
+				Sleep(1000)
+				MessageBox_Self_OK_Clicked()
+				GetLuaValue("setmetatable(_G, {__index=BangHui_Shop_Env});BangHui_Shop_GoodButton_Clicked(15);","",0);
+				Sleep(1000)
+				MessageBox_Self_OK_Clicked()
+				GetLuaValue("setmetatable(_G, {__index=BangHui_Shop_Env});BangHui_Shop_GoodButton_Clicked(16);","",0);
 				Sleep(1000)
 				MessageBox_Self_OK_Clicked()
 			end
