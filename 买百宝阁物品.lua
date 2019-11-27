@@ -43,11 +43,11 @@ function BuyItemJudgeUsers()
 	--Players1表示令牌物品全不要买
 	--[[local Players1 = {"逗逗．や","情定三世丶"};--]]
 	--Players2表示令牌物品全要买
-	local Players2 = {"梵魚ˇ ","平凡の","．波少ヽ","丶漫步ゾ天龙","TH－莫囄"};
+	local Players2 = {"梵魚ˇ","平凡の","丶漫步ゾ天龙"};
 	--Players3表示令牌买唤灵液
-	local Players3 = {"′雪走","°﹎紫龍ヤ"};
+	local Players3 = {"．波少ヽ","′雪走"};
 	--Players4表示令牌买天荒晶石
-	local Players4 = {"灬枫ヽ昕℃ ","小叶丶绝杀","Se⒎蕝蝂哥℡","しF笑天Dす","╰☆TeaR陌ゝ","超级↑→奶妈","Am°惜你若命","．Lynthia","轻狂∴小可","雨林之后","红颜傲﹡．"};
+	local Players4 = {"灬枫ヽ昕℃ ","TH－莫囄","小叶丶绝杀","Se⒎蕝蝂哥℡","しF笑天Dす","╰☆TeaR陌ゝ","超级↑→奶妈","Am°惜你若命","轻狂∴小可","雨林之后","红颜傲﹡．","TH－莫囄"};
 	
 	--Players2表示令牌物品全要买
 	for key,value in ipairs(Players2) do

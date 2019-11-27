@@ -17,7 +17,7 @@ function waitForPlayers()
 		
 	players = {
 		"°﹎紫龍ヤ",
-		"小叶丶绝杀","艳歌羅敷行","轻狂∴小可","霂鑰．ゞ","﹏紫．骄傲ゝ","．Lynthia"
+		"小叶丶绝杀","艳歌羅敷行","轻狂∴小可","﹏紫．骄傲ゝ","．Lynthia"
     };
 
 	for key,value in ipairs(players) do
