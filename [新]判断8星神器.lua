@@ -115,9 +115,17 @@ for i = 1,6 do
 	destroyItem();
 end
 
+local playName
 
-_SMain()
---回城
-MoveTo(155, 155, 580, nil, nil, nil)
-Sleep(1000)
+for key,value in ipairs(players) do
+	playName = GetPlayerInfo("NAME");
+	PushDebugMessage(playName);
+	if playName == value then
+		_SMain()
+		--回城
+		MoveTo(155, 155, 580, nil, nil, nil)
+		Sleep(1000)
+	end
+end
+
 跨图寻路("洛阳",347,249)
