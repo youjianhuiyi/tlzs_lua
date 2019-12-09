@@ -9,7 +9,7 @@ end
 
 
 function findItem()
-	while true do
+	for i = 1,5 do
 		local bFind, nIndex = Bag:FindBagItem_DJ("福降令",0)
 		if bFind == true and nIndex ~= -1 then
 			PushDebugMessage("查找物品名称： [福降令]");
