@@ -20,6 +20,7 @@ local players = {
 	"Se¢·Ê…ÎZ¸ç©Y","¡äÃÎÓ°£®¤ä","©ná°©fÙâ¡ã","³¬¼¶¡ü¡úÄÌÂè","¨t¡îTeaRÄ°©f","Am¡ãÏ§ÄãÈôÃü",
 	"•¦›ïÆS†OˆµìÍ","¡ã©m×Ïıˆ¥ä","Ìì×ÓÔÂ","TH£­Äª‡Î","¤é©n±¿´ô´ô¡ã","Ğ¡Ğ¡ÊéÍ¯2",
 	"Ğ¡Ò¶Ø¼¾øÉ±","ÑŞ¸èÁ_·óĞĞ","Çá¿ñ¡àĞ¡¿É","ëè€£®©g","©n×Ï£®½¾°Á©f","£®Lynthia",
+	"©mÏÉÀÖ¡ã","¨@¼²·ç½£ºÀ©f","£¢ÂûÂûÇá¸è©f","¡äÄ½Çå·ã£®¤ä","¡å¤¦Á÷Àì","¨t¨AÁ¹Æ¤£®©~"
 	--{"ªš×ÔÒ»ÈËØ¼"}
 };
 	
@@ -45,6 +46,8 @@ function waitForPlayers()
 				num = 5
 			elseif key >= 31 and key <= 36 then
 				num = 6
+			else 
+				num = 1
 			end
 			PushDebugMessage("×¼±¸È¥¶¨µãË¢Öí×ø±êÊ¥ÊŞÉ½"..pos[num][1]..","..pos[num][2]);
 			Sleep(500)
@@ -61,7 +64,7 @@ end
 
 
 function judgeTeamer(time)
-	if playName == "¶º¶º£®¤ä" or  playName == "¤¡Ò¼È~áuÓÍ¤¢" or  playName == "Æ½·²¤Î" or  playName == "Se¢·Ê…ÎZ¸ç©Y" or  playName == "•¦›ïÆS†OˆµìÍ" or  playName == "£®Lynthia" then
+	if playName == "¶º¶º£®¤ä" or  playName == "¤¡Ò¼È~áuÓÍ¤¢" or  playName == "Æ½·²¤Î" or  playName == "¨t¨AÁ¹Æ¤£®©~" or  playName == "Se¢·Ê…ÎZ¸ç©Y" or  playName == "•¦›ïÆS†OˆµìÍ" or  playName == "£®Lynthia" then
 		Player_TeamFollow(true) --×é¶Ó¸úËæ
 		Sleep(500)
 	end

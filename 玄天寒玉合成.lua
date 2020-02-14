@@ -12,6 +12,26 @@ Sleep(600)
 QuestFrameOptionClicked("寒玉合成", 1, 500)
 Sleep(600)
 
+
+--核心调用，
+function checkNPCDst()
+	local Obj = Enum2XAllObj()
+	for i = 1, #Obj do
+		local tmp = Obj[i]
+		if tmp.name == "史嫂" and tonumber(tmp.dst) <= 3 then
+			return true
+		else
+			for j=1,3 do 
+				MoveToNPC(187,225,246,"史嫂");Sleep(1000)
+				QuestFrameOptionClicked("寒玉合成", 1, 500)
+			end
+			return true
+		end
+	end
+end
+
+checkNPCDst()
+
 while true do
 	QuestFrameOptionClicked("我要合成", 1, 500)
 	Sleep(100)

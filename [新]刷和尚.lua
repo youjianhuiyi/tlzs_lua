@@ -25,7 +25,8 @@ players = {
 	"¶º¶º£®¤ä","¶¹¶¹Âèßä","Çé¶¨ÈıÊÀØ¼","èóô~¡¦","ìá·ã©cê¿¡æ","¡åõÚ½ÅÓµËû©f",
 	"¤¡Ò¼È~áuÓÍ¤¢","©n·Æ¶ù¡¢©f","ÓêÁÖÖ®ºó","ºìÑÕ°Á©~£®","¤·FĞ¦ÌìD¤¹","´ËÉúµÄ»Ø²‰",
 	"Se¢·Ê…ÎZ¸ç©Y","¡äÃÎÓ°£®¤ä","©ná°©fÙâ¡ã","³¬¼¶¡ü¡úÄÌÂè","¨t¡îTeaRÄ°©f","Am¡ãÏ§ÄãÈôÃü",
-	"Ğ¡Ò¶Ø¼¾øÉ±","ÑŞ¸èÁ_·óĞĞ","Çá¿ñ¡àĞ¡¿É","ëè€£®©g","©n×Ï£®½¾°Á©f","£®Lynthia"
+	"Ğ¡Ò¶Ø¼¾øÉ±","ÑŞ¸èÁ_·óĞĞ","Çá¿ñ¡àĞ¡¿É","ëè€£®©g","©n×Ï£®½¾°Á©f","£®Lynthia",
+	"©mÏÉÀÖ¡ã","¨@¼²·ç½£ºÀ©f","£¢ÂûÂûÇá¸è©f","¡äÄ½Çå·ã£®¤ä","¡å¤¦Á÷Àì","¨t¨AÁ¹Æ¤£®©~"
 };
 ------------------------------------------------------
 -- µÈ´ıÖ´ĞĞÕÒµãµÄÑ°Â·¹¦ÄÜ
@@ -48,6 +49,8 @@ function waitForPlayers()
 				num = 5
 			elseif key >= 31 and key <= 36 then
 				num = 6
+			else
+				num = 1
 			end
 			
 			PushDebugMessage("×¼±¸È¥¶¨µãË¢ºÍÉĞµØÍ¼".. pos[num][1].."×ø±êÎª£º"..pos[num][2]..","..pos[num][3]);
@@ -64,7 +67,7 @@ end
 
 
 function judgeTeamer(time)
-	if playName == "¶º¶º£®¤ä" or  playName == "¤¡Ò¼È~áuÓÍ¤¢" or  playName == "Æ½·²¤Î" or  playName == "Se¢·Ê…ÎZ¸ç©Y" or  playName == "•¦›ïÆS†OˆµìÍ" or  playName == "£®Lynthia" then
+	if playName == "¶º¶º£®¤ä" or  playName == "¤¡Ò¼È~áuÓÍ¤¢" or  playName == "Æ½·²¤Î" or  playName == "¨t¨AÁ¹Æ¤£®©~" or  playName == "Se¢·Ê…ÎZ¸ç©Y" or  playName == "•¦›ïÆS†OˆµìÍ" or  playName == "£®Lynthia" then
 		Player_TeamFollow(true) --×é¶Ó¸úËæ
 		Sleep(500)
 	end

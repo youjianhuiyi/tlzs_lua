@@ -1,6 +1,5 @@
 PushDebugMessage("进行自动12个操作，脚本自己执行，自动组团")
 
-
 local slaveTeam = {
 	"逗逗．や","豆豆妈咪","情定三世丶","梵魚ˇ","灬枫ヽ昕℃","″踮脚拥他ゝ",
 	"暒涳芐哋埖焱","°﹎紫龍ヤ","天子月","TH－莫囄","ら﹏笨呆呆°","小小书童2",
@@ -77,5 +76,20 @@ function judgeTeamPlayers(key1,key2)
 end
 
 --核心调用，
-MoveToNPC(210,173,246,"高阳");Sleep(1000)
+function checkNPCDst()
+	local Obj = Enum2XAllObj()
+	for i = 1, #Obj do
+		local tmp = Obj[i]
+		if tmp.name == "高阳" and tonumber(tmp.dst) <= 3 then
+			return true
+		else
+			for j=1,3 do 
+				MoveToNPC(210,173,246,"高阳");Sleep(1000)
+			end
+			return true
+		end
+	end
+end
+
+checkNPCDst();
 createGroup();
