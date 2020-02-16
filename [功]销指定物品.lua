@@ -22,7 +22,7 @@ function overNumsItem()
 		local tObj = Bag:EnumAllObj()
 		for i = 1, #tObj do
 			local tmp = tObj[i]
-			if tmp.name == value and tmp.count == 20 then 
+			if tmp.name == value and tmp.count >= 250 then 
 				CallFun(5,tmp.index)
 			end
 		end
