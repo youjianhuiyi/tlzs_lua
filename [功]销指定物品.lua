@@ -29,6 +29,17 @@ function overNumsItem()
 	end
 end
 
+-- 获取背包肉数量与剩余空间数量 
+function getBagNum()
+	--获取背包物品数量
+	--	返回值：整数型
+	--  参数1：文本型		物品名称，只支持精确名字
+	--  参数2：整数型		绑定状态 0无所谓 1不绑的 2绑定的
+	--  参数3：整数型		锁定状态 0无所谓 1不锁的 2锁定的
+	local nCount = Bag:GetItemCount("后肘肉口粮", 0, 1)
+
+end
+
 -- 销毁指定数量的物品一个格子
 overNumsItem()
 --下面是销毁6次，物品名写在下面
