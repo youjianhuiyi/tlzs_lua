@@ -43,11 +43,8 @@ function CoinToJiaozi()
 end
 
 -- 核心调用
+Player_TeamFollow(false)
 backCity()
-
-if Jiaozi / 10000 <= 2 then
-	CoinToJiaozi()
-end
 
 --获取背包物品数量
 --	返回值：整数型
@@ -57,8 +54,10 @@ end
 local nCount = Bag:GetItemCount("后肘肉口粮", 0, 1)
 
 if nCount <= 60 then
+	if Jiaozi / 10000 <= 2 then
+		CoinToJiaozi()
+	end
 	执行脚本("[功能] 买卖补给");Sleep(2000)
 end
-
 执行脚本("[功能] 物品存仓");Sleep(1000)
 执行脚本("加工材料")

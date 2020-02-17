@@ -57,6 +57,14 @@ function destroyItem()
 end
 
 --核心调用
+for i = 1,60 do
+	PushDebugMessage("#cff0000 防掉线检测,剩余： [" .. i.."] 秒后执行！！！");
+	if i == 60 then 
+		break
+	end
+	Sleep(1000)
+end
+
 checkNPCDst()
 buyPetEats()
 

@@ -1,6 +1,6 @@
 PushDebugMessage("#eDC4C18#cFFFF00 #81自动销毁宝宝和球,在脚本结束前，不允许整理背包，不然会误销毁！！！！！");
 local DropCommonItem = {"后肘肉口粮","回旋金球","蝗虫口粮","棕榈口粮","初级勾天彩合成符","高级宝石熔炼符","足太阴脉运功典藏"}
-local OverNumsItems = {"战魂玉","古兰玉","愿灵泉"}
+local OverNumsItems = {"战魂玉","古兰玉","愿灵泉","新莽神符7级"}
 
 function destroyItem()
 	for key,value in ipairs(DropCommonItem) do
