@@ -39,6 +39,29 @@ local activeScene = GetActiveSceneName()
 local npcs = {}
 AI_SetParameter("NEWOLD_daguai", 1) --设置新打怪模式
 
+-------------------------------------------------------
+-- 帮会副本NPC寻找的路线
+-------------------------------------------------------
+local findNPC = {
+	{73,146},
+	{74,126},
+	{119,153},
+	{141,136},
+	{97,119},
+	{98,96},
+	{65,99},
+	{55,74},
+	{49,55},
+	{71,60},
+	{98,79},
+	{133,61},
+	{147,46},
+	{151,75},
+	{137,100},
+	{98,98},
+	{99,58}
+};
+
 -----------------------------------------------------------
 -- 副本里面打怪坐标
 -----------------------------------------------------------
@@ -65,9 +88,9 @@ local position = {
 function autoRideToNPC( sceneName,scenePositionName,cityName )
 	checkNPCDst(sceneName,scenePositionName,cityName)
 	PushDebugMessage("#b#eff00ff 即将进入指定帮会城市～～");
-	Sleep(1500)
+	Sleep(500)
 	QuestFrameOptionClicked(cityName,0)
-	Sleep(1500)
+	Sleep(500)
 	PushDebugMessage("#b#eff00ff 进入指定帮派城市");
 end
 
@@ -92,6 +115,8 @@ function checkNPCDst( sceneName,scenePositionName,cityName )
     end
     return false
 end
+
+
 
 -----------------------------------------------------------
 -- 定义打怪跳出条件，当前坐标没有怪物的时候就跳出本次刷怪
@@ -148,12 +173,54 @@ function DaGuai(xpos,ypos)
 end
 
 
+-------------------------------------------------------
+-- 循环查找山妖或者山鬼
+-------------------------------------------------------
+function findNPC()
+	local Obj = Enum2XAllObj()
+	for key,value in ipairs(Obj) do
+		PushDebugMessage(key .. " --- " .. value.name);
+		if value.class == "NPC" and value.name == "山妖" then
+			ShanYao_NPC[key] = {value.name , value.class , value.x , value.y , value.dst}
+		else
+			ShanGui_NPC[key] = {value.name , value.class , value.x , value.y , value.dst}
+		end
+	end
+end
+
+
+-------------------------------------------------------
+-- 进入山妖山鬼副本
+-------------------------------------------------------
+function enterNPC()
+	if activeScene == "九层妖塔" then
+		-- 进山妖
+		findNPC()
+		for k_enter,v_enter in ipairs(ShanYao_NPC) do
+			if v_enter[3] ~= nil or v_enter[4] ~= nil then
+				MoveToNPC(v_enter[3],v_enter[4],-1,v_enter[1]);Sleep(1500)
+			end
+		end
+	else
+		-- 进山鬼
+		findNPC()
+		for k_enter,v_enter in ipairs(ShanGui_NPC) do
+			if v_enter[3] ~= nil or v_enter[4] ~= nil then
+				MoveToNPC(v_enter[3],v_enter[4],-1,v_enter[1]);Sleep(1500)
+			end
+		end
+	end
+end
+
 ------------------------------------------------------
 -- 核心调用
 ------------------------------------------------------
 --先自动寻路到帮派城市
 autoRideToNPC( sceneName,scenePositionName,cityName )
 
+--进帮派城市后进行找怪，并进入副本
+enterNPC()
+--进了副本之后执行刷怪
 
 for k1,v1 in ipairs(position) do
 	PushDebugMessage("当前是第"..k1.."个坐标点")
