@@ -1,3 +1,11 @@
+--[[
+	脚本作用：扫图专用号，扫图然后扔帮会银行里面
+	author:yulinzhihou
+	email:yulinzhihou@gmail.com
+	github:https://github.com/yulinzhihou
+	Date:2020-07-20
+]]
+
 -----开始----------------------
 local MapName = GetActiveSceneName()
 --判断角色当前所在地图，就近领取任务
