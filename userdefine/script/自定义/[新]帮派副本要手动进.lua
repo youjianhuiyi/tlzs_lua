@@ -86,7 +86,7 @@ function checkNPCDst( sceneName,scenePositionName,cityName )
 		if tmp.name == scenePositionName and tonumber(tmp.dst) <= 3 then
 			return true
 		else
-			MoveToNPC(cityNew[sceneName][postion][2],cityNew[sceneName][postion][3],cityNew[sceneName][postion][1], sceneName);Sleep(500)
+			MoveToNPC(cityNew[sceneName][scenePositionName][2],cityNew[sceneName][scenePositionName][3],cityNew[sceneName][scenePositionName][1], sceneName);Sleep(500)
 		end
     end
     return false
