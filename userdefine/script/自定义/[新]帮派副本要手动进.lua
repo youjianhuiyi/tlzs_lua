@@ -7,7 +7,7 @@ PushDebugMessage("#eDC4C18#cFFFF00 #81自动找身边的NPC，进入副本刷怪");
 -- 场景名称,直接从下面列表复制粘贴上来，如 雁南
 local sceneName = '';
 -- 帮派城市方位，直接从下面列表复制粘贴上来，如 雁南正北校尉
-local scenePosition = ''
+local scenePositionName = ''
 -- 帮派城市名称 可以看系统消息，选择模糊填写 '九层妖塔' => 九层，或者 九，或者 层， 或者 妖
 local cityName = ''
 
@@ -62,11 +62,34 @@ local position = {
 -- cityName	 帮派名称
 -- postion	 帮派城的方位
 -----------------------------------------------------------
-function autoRideToNPC( sceneName,postion,cityName )
-	MoveToNPC(cityNew[sceneName][postion][2],cityNew[sceneName][postion][3],cityNew[sceneName][postion][1], sceneName)
+function autoRideToNPC( sceneName,scenePositionName,cityName )
+	checkNPCDst(sceneName,scenePositionName,cityName)
 	PushDebugMessage("#b#eff00ff 即将进入指定帮会城市～～");
 	Sleep(1500)
 	QuestFrameOptionClicked(cityName,0)
+	Sleep(1500)
+	PushDebugMessage("#b#eff00ff 进入指定帮派城市");
+end
+
+
+-----------------------------------------------------------
+-- 检测角色是否已经到达指定 NPC 位置上
+-- xpos x 坐标
+-- ypos y 坐标
+-----------------------------------------------------------
+function checkNPCDst( sceneName,scenePositionName,cityName )
+    local Obj = Enum2XAllObj()
+    --过滤类型。 参数2：依次代表 {NPC,怪物，玩家，珍兽，宝箱} 0排除，1保留，
+    tObj = ObjFilterByClass(tObj, {1, 0, 0, 0, 0})
+	for i = 1, #Obj do
+		local tmp = Obj[i]
+		if tmp.name == scenePositionName and tonumber(tmp.dst) <= 3 then
+			return true
+		else
+			MoveToNPC(cityNew[sceneName][postion][2],cityNew[sceneName][postion][3],cityNew[sceneName][postion][1], sceneName);Sleep(500)
+		end
+    end
+    return false
 end
 
 -----------------------------------------------------------
@@ -128,7 +151,7 @@ end
 -- 核心调用
 ------------------------------------------------------
 --先自动寻路到帮派城市
-autoRideToNPC( sceneName,scenePosition,cityName )
+autoRideToNPC( sceneName,scenePositionName,cityName )
 
 
 for k1,v1 in ipairs(position) do
