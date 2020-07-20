@@ -1,0 +1,9 @@
+<Setting>
+    <Fight>
+        <MapId id="255" />
+	<MapName Name="º¹ÑªÁë" />
+        <TrainPoints>
+            <TrainPoint X="68" Y="92" R="15" SX="0" SY="0" KC="-1" />
+        </TrainPoints>
+    </Fight>
+</Setting>

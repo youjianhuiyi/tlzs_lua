@@ -1,0 +1,8 @@
+PushDebugMessage("#eDC4C18#cFFFF00 进行仓库整理一套")
+执行脚本("加工材料")
+PushDebugMessage("#eDC4C18#cFFFF00 进行仓库整理一套---买卖补给")
+执行脚本("[功能] 买卖补给")
+PushDebugMessage("#eDC4C18#cFFFF00 进行仓库整理一套---销毁背包物品")
+执行脚本("销毁清理背包")
+PushDebugMessage("#eDC4C18#cFFFF00 进行仓库整理一套---销毁宝宝肉")
+执行脚本("[功]销指定物品")
