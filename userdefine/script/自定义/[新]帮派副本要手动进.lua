@@ -7,7 +7,7 @@ PushDebugMessage("#eDC4C18#cFFFF00 #81自动找身边的NPC，进入副本刷怪");
 -- 场景名称,直接从下面列表复制粘贴上来，如 雁南
 local sceneName = '';
 -- 帮派城市方位，直接从下面列表复制粘贴上来，如 雁南正北校尉
-local postion = ''
+local scenePosition = ''
 -- 帮派城市名称 可以看系统消息，选择模糊填写 '九层妖塔' => 九层，或者 九，或者 层， 或者 妖
 local cityName = ''
 
@@ -63,7 +63,7 @@ local position = {
 -- postion	 帮派城的方位
 -----------------------------------------------------------
 function autoRideToNPC( sceneName,postion,cityName )
-	MoveToNPC(cityNew[cityName][postion][2], cityNew[cityName][postion][3], cityNew[cityName][postion][1], sceneName)
+	MoveToNPC(cityNew[sceneName][postion][2],cityNew[sceneName][postion][3],cityNew[sceneName][postion][1], sceneName)
 	PushDebugMessage("#b#eff00ff 即将进入指定帮会城市～～");
 	Sleep(1500)
 	QuestFrameOptionClicked(cityName,0)
@@ -128,7 +128,7 @@ end
 -- 核心调用
 ------------------------------------------------------
 --先自动寻路到帮派城市
-autoRideToNPC( sceneName,postion,cityName )
+autoRideToNPC( sceneName,scenePosition,cityName )
 
 
 for k1,v1 in ipairs(position) do
