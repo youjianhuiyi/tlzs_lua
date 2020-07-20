@@ -5,11 +5,11 @@
 PushDebugMessage("#eDC4C18#cFFFF00 #81自动找身边的NPC，进入副本刷怪");
 
 -- 场景名称,直接从下面列表复制粘贴上来，如 雁南
-local sceneName = '';
+local sceneName = '雁南';
 -- 帮派城市方位，直接从下面列表复制粘贴上来，如 雁南正北校尉
-local scenePositionName = ''
+local scenePositionName = '雁南正北校尉'
 -- 帮派城市名称 可以看系统消息，选择模糊填写 '九层妖塔' => 九层，或者 九，或者 层， 或者 妖
-local cityName = ''
+local cityName = '雨'
 
 -----------------------------------------------------------
 -- 定义全区所有帮派NPC坐标点，用于自动寻路
@@ -86,7 +86,8 @@ function checkNPCDst( sceneName,scenePositionName,cityName )
 		if tmp.name == scenePositionName and tonumber(tmp.dst) <= 3 then
 			return true
 		else
-			MoveToNPC(cityNew[sceneName][scenePositionName][2],cityNew[sceneName][scenePositionName][3],cityNew[sceneName][scenePositionName][1], sceneName);Sleep(500)
+			--MoveToNPC(param.x, param.y, param.sceneID, param.name, nil, use_horse, call_back_run)
+			MoveToNPC(cityNew[sceneName][scenePositionName][2],cityNew[sceneName][scenePositionName][3],cityNew[sceneName][scenePositionName][1],scenePositionName);Sleep(500)
 		end
     end
     return false
