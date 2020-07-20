@@ -37,8 +37,9 @@ local cityNew = {
 
 local activeScene = nil
 local npcs = {}
-local ShanYao_NPC = {}
-local ShanGui_NPC = {}
+local ShanYao_NPC = {} -- 山妖
+local ShanGui_NPC = {} -- 山鬼
+local nPos = 1 -- 找 NPC 从第一个坐标开始找起
 local originSceneId = nil;--进入帮派时获取当前场景 ID
 local newSceneId = nil;-- 进入山鬼或者山妖后的场景 ID
 AI_SetParameter("NEWOLD_daguai", 1) --设置新打怪模式
@@ -180,7 +181,8 @@ end
 -------------------------------------------------------
 -- 循环查找山妖或者山鬼
 -------------------------------------------------------
-function findNPC()
+function findNPC(xpos,ypos)
+	MoveToNPC(xpos,ypos,-1)
 	local Obj = Enum2XAllObj()
 	for key,value in ipairs(Obj) do
 		PushDebugMessage(key .. " --- " .. value.name);
@@ -198,13 +200,20 @@ end
 -------------------------------------------------------
 function enterNPC()
 	activeScene = GetActiveSceneName()
+	bossPosition = table.maxn(findNPC)
 	if activeScene == "九层妖塔" then
 		-- 进山妖
-		findNPC()
+		if nPos <= bossPosition then 
+			findNPC(findNPC[nPos][1],findNPC[nPos][2])
+		else
+			nPos = 1
+		end
+
 		for k_enter,v_enter in ipairs(ShanYao_NPC) do
 			if v_enter[3] ~= nil or v_enter[4] ~= nil then
 				MoveToNPC(v_enter[3],v_enter[4],-1,v_enter[1]);Sleep(1500)
-				newSceneId = GetSceneId();
+				newSceneId = GetSceneID();
+				nPos = nPos+1
 			end
 		end
 	else
@@ -213,7 +222,8 @@ function enterNPC()
 		for k_enter,v_enter in ipairs(ShanGui_NPC) do
 			if v_enter[3] ~= nil or v_enter[4] ~= nil then
 				MoveToNPC(v_enter[3],v_enter[4],-1,v_enter[1]);Sleep(1500)
-				newSceneId = GetSceneId();
+				newSceneId = GetSceneID();
+				nPos = nPos+1
 			end
 		end
 	end
@@ -225,7 +235,7 @@ end
 --先自动寻路到帮派城市
 autoRideToNPC( sceneName,scenePositionName,cityName )
 -- 获取当前没有进副本的帮派城市的场景 ID
-originSceneId = GetSceneId();
+originSceneId = GetSceneID();
 --进帮派城市后进行找怪，并进入副本
 if originSceneId == newSceneId and newSceneId == nil  then
 	enterNPC()
