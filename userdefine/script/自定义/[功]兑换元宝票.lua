@@ -1,9 +1,20 @@
+--[[
+	脚本作用：将角色身上的元宝兑换成元宝票，自动存银行
+	author:yulinzhihou
+	email:yulinzhihou@gmail.com
+	github:https://github.com/yulinzhihou
+	Date:2020-07-21
+]]
 PushDebugMessage("可以编辑修改保留的数量")
 -- 要保留、不兑换成元宝票的元宝数量 ======根据需要设置======
 local BaoLiu = 0
 local nTick = 0
 local yuanbao = Player:GetDataInt('YUANBAO')
 
+
+---------------------------------------------------------------------
+-- 去钱庄兑换元宝票
+---------------------------------------------------------------------
 function exchangeYB()
 	while true do
 		-- 获取当前元宝数量
@@ -28,7 +39,9 @@ function exchangeYB()
 end
 
 
---[[获取道具栏背包里面的物品--]]
+---------------------------------------------------------------------
+-- 获取道具栏背包里面的物品
+---------------------------------------------------------------------
 function findBaseItemsToBank()
     --通过获取当前背包的空余空间来取物品
     GetLuaValue("setmetatable(_G, {__index = MainMenuBar_Env});MainMenuBar_Packet_Clicked();","",0);Sleep(1000);
@@ -60,23 +73,28 @@ function findBaseItemsToBank()
 end
 
 
---PushDebugMessage("兑换结束！")
-exchangeYB();
---QuestFrameOptionClicked("进入本帮城市");Sleep(3000)
+---------------------------------------------------------------------
+-- 核心调用
+---------------------------------------------------------------------
 PushDebugMessage("#eDC4C18#cFFFF00兑换完的元宝票会自动存入帮会银行！！")
-if CityToGuild() then
-    MoveToNPC(148, 56, -1, "钱为一"); Sleep(1500)
-    QuestFrameOptionClicked("帮会银行",1); Sleep(3000)
-	findBaseItemsToBank();
--- GuildToCity()这里要手动操作，暂时不离帮。
-end
-
-if yuanbao > 0 then
-	exchangeYB();
-	if CityToGuild() then
-		MoveToNPC(148, 56, -1, "钱为一"); Sleep(1500)
-		QuestFrameOptionClicked("帮会银行",1); Sleep(3000)
-		findBaseItemsToBank();
+while true do
+	if yuanbao > 0 then
+		exchangeYB();
+		if CityToGuild() then
+			MoveToNPC(148, 56, -1, "钱为一"); Sleep(1500)
+			QuestFrameOptionClicked("帮会银行",1); Sleep(3000)
+			findBaseItemsToBank();
+		end
+	else
+		local bFind, nIndex = Bag:FindBagItem_DJ("元宝票", 0)
+		if bFind then
+			if CityToGuild() then
+				MoveToNPC(148, 56, -1, "钱为一"); Sleep(1500)
+				QuestFrameOptionClicked("帮会银行",1); Sleep(3000)
+				findBaseItemsToBank();
+			end
+		else
+			break;
+		end
 	end
 end
--- 将元宝兑换成元宝票 FQ_101210_27

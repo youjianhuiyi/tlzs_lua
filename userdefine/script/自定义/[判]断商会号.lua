@@ -29,13 +29,13 @@ function judgePlayers()
 		--PushDebugMessage(playName);
 		if playName == value then
 			PushDebugMessage(value .. "准备去商会取藏宝图");
-			执行脚本("商会取物")
+			LoadScipt("商会取物")
 			return true
 		end
 		
 	end
 	PushDebugMessage("执行脚本需要设置扫摊位数量，不然会无限循环扫街脚本，不会退出")
-	执行脚本("[09] 扫街喊话收购")
+	LoadScipt("[09] 扫街喊话收购")
 	return true
 end
 
