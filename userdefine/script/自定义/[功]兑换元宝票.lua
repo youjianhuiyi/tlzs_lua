@@ -5,7 +5,7 @@
 	github:https://github.com/yulinzhihou
 	Date:2020-07-21
 ]]
-PushDebugMessage("可以编辑修改保留的数量")
+PushDebugMessage("#eDC4C18#cFFFF00 可以编辑修改保留的数量")
 -- 要保留、不兑换成元宝票的元宝数量 ======根据需要设置======
 local BaoLiu = 0
 local nTick = 0

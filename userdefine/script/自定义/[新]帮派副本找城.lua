@@ -1,13 +1,18 @@
 --[[
-	脚本信息：半自动帮派副本，需要手动改帮派副本城市位置
-
+	脚本功能：半自动帮派副本，需要手动改帮派副本城市位置
+	author:yulinzhihou
+	email:yulinzhihou@gmail.com
+	github:https://github.com/yulinzhihou
+	Date:2020-07-21
 ]]
 PushDebugMessage("#eDC4C18#cFFFF00 #81自动找身边的NPC，进入副本刷怪");
 
 -- 场景名称,直接从下面列表复制粘贴上来，如 雁南
 local sceneName = '雁南';
+
 -- 帮派城市方位，直接从下面列表复制粘贴上来，如 雁南正北校尉
 local scenePositionName = '雁南正北校尉'
+
 -- 帮派城市名称 可以看系统消息，选择模糊填写 '九层妖塔' => 九层，或者 九，或者 层， 或者 妖
 local cityName = '雨'
 
@@ -99,7 +104,6 @@ function autoRideToNPC( sceneName,scenePositionName,cityName )
 	PushDebugMessage("#b#eff00ff 进入指定帮派城市");
 end
 
-
 -----------------------------------------------------------
 -- 检测角色是否已经到达指定 NPC 位置上
 -- xpos x 坐标
@@ -120,8 +124,6 @@ function checkNPCDst( sceneName,scenePositionName,cityName )
     end
     return false
 end
-
-
 
 -----------------------------------------------------------
 -- 定义打怪跳出条件，当前坐标没有怪物的时候就跳出本次刷怪
@@ -177,7 +179,6 @@ function DaGuai(xpos,ypos)
 	return nil
 end
 
-
 -------------------------------------------------------
 -- 循环查找山妖或者山鬼
 -------------------------------------------------------
@@ -194,7 +195,6 @@ function findNPC(xpos,ypos)
 		end
 	end
 end
-
 
 -------------------------------------------------------
 -- 进入山妖山鬼副本
@@ -234,7 +234,7 @@ function enterNPC()
 end
 
 ------------------------------------------------------
--- 核心调用
+-- 核心调用，暂时只支持先找城，后面优化自动成自动打城进城，自动找山鬼/山妖进副本 
 ------------------------------------------------------
 --先自动寻路到帮派城市
 autoRideToNPC( sceneName,scenePositionName,cityName )
