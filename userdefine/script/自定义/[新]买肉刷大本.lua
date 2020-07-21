@@ -1,3 +1,15 @@
+--[[
+    脚本功能：加强版买肉，一般用于挂机刷经验之类，会把肉买满
+	author:yulinzhihou
+	email:yulinzhihou@gmail.com
+	github:https://github.com/yulinzhihou
+	Date:2020-07-21
+]]
+
+
+-----------------------------------------------------------
+-- 去楼兰宝宝 NPC 处
+-----------------------------------------------------------
 function checkNPCDst()
     local Obj = Enum2XAllObj()
     --过滤类型。 参数2：依次代表 {NPC,怪物，玩家，珍兽，宝箱} 0排除，1保留，
@@ -13,8 +25,22 @@ function checkNPCDst()
     return false
 end
 
+-----------------------------------------------------------
+-- 自动买最大肉
+-----------------------------------------------------------
+function judgeBagIsEmpty()
+    
+end
 
+
+
+-----------------------------------------------------------
+-- 自动买最大肉
+-----------------------------------------------------------
 function buyPetEats()
+    if condition then
+        Packet_PackUp_Clicked();--整理背包
+    end
     MoveToNPC(109,121,246,"云兮兮");Sleep(500)
     QuestFrameOptionClicked("看看你卖的东西");Sleep(500)
     PushDebugMessage("#eDC4C18#cFFFF00买指定数量的肉与快乐度物品，准备刷新副本")
@@ -38,11 +64,14 @@ function buyPetEats()
     GetLuaValue("setmetatable(_G, {__index = Shop_BulkBuyingEx_Env});Shop_BulkBuying_Max_Ex_Clicked();","",0);Sleep(500);
     GetLuaValue("setmetatable(_G, {__index = Shop_BulkBuyingEx_Env});Shop_BulkBuying_Max_Ex_Clicked();","",0);Sleep(200)
     GetLuaValue("setmetatable(_G, {__index = Shop_BulkBuyingEx_Env});Shop_BulkBuying_Accept_Ex_Clicked();","",0);Sleep(500);
-    PushDebugMessage("买肉结束，准备开刷")
+    PushDebugMessage("#eDC4C18#cFFFF00 买肉结束，准备开刷")
 end
 
 local DropCommonItem = {"后肘肉口粮","蝗虫口粮","棕榈口粮"}
 
+-----------------------------------------------------------
+-- 自动回城
+-----------------------------------------------------------
 function destroyItem()
 	for key,value in ipairs(DropCommonItem) do
 		local bFind, nIndex = Bag:FindBagItem_DJ(value,0)
@@ -56,6 +85,10 @@ function destroyItem()
 	
 end
 
+
+-----------------------------------------------------------
+-- 自动回城
+-----------------------------------------------------------
 --核心调用
 for i = 1,60 do
 	PushDebugMessage("#cff0000 防掉线检测,剩余： [" .. i.."] 秒后执行！！！");
