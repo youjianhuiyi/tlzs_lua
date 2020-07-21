@@ -23,7 +23,7 @@ function waitForPlayers()
 		PushDebugMessage(playName);
 		if playName == value then
 			PushDebugMessage(value .. "准备去帮会聚宝盆");
-			执行脚本("帮会聚宝盆")
+			LoadScript("帮会聚宝盆")
 		end
 	end
 

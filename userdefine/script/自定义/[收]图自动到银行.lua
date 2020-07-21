@@ -6,38 +6,12 @@
 	Date:2020-07-20
 ]]
 
------开始----------------------
-local MapName = GetActiveSceneName()
---判断角色当前所在地图，就近领取任务
-local flag = true
+-- 通用进帮派
+LoadScript("LtoGuild.lua")
 
--- 仓库取图到帮会NPC处
-function goGuildNPC()
-	if MapName == "洛阳" then
-		MoveToNPC(237,236,0,"范纯仁");Sleep(1000)
-		flag = false
-	elseif MapName == "苏州" then
-		MoveToNPC(322,264,1,"范纯粹");Sleep(1000)
-		flag = false
-	elseif MapName == "大理" then
-		MoveToNPC(179,121,2,"范纯礼");Sleep(1000)
-		flag = false
-	elseif MapName == "楼兰" then
-		MoveToNPC(191,130,246,"范纯祐");Sleep(1000)
-		flag = false
-	else
-		取消跟随()
-		下坐骑()
-		local bUse = Skill:UseSkillByName("返回大理城", -1, 10000)
-		if bUse == false then
-			跨图寻路("洛阳",347,249)
-		end
-		MoveToNPC(237,236,0,"范纯仁");Sleep(1000)
-		flag = false
-	end
-end
-
+---------------------------------------------------------------------
 -- 从帮会NPC进入帮会打开对话
+---------------------------------------------------------------------
 function toGuild()
 	while flag do
 	 goGuildNPC()
@@ -51,7 +25,9 @@ function toGuild()
 	end
 end
 
+---------------------------------------------------------------------
 -- 检查NPC离自己的距离
+---------------------------------------------------------------------
 function checkNPCDst()
 	local Obj = Enum2XAllObj()
 	for i = 1, #Obj do
@@ -69,7 +45,9 @@ function checkNPCDst()
 end
 
 
---[[获取道具栏背包里面的物品并且往对应格子里面扔物品--]]
+---------------------------------------------------------------------
+-- 获取道具栏背包里面的物品并且往对应格子里面扔物品
+---------------------------------------------------------------------
 function findBaseItemsToBank()
 	--通过获取当前背包的空余空间来取物品
     GetLuaValue("setmetatable(_G, {__index = MainMenuBar_Env});MainMenuBar_Packet_Clicked();","",0);Sleep(80);
@@ -96,7 +74,10 @@ function findBaseItemsToBank()
 end
 
 
+
+---------------------------------------------------------------------
 -- 往银行扔藏宝图
+---------------------------------------------------------------------
 function throwTreasureMap()
 	--判断是否在银行NPC附近。判断是否打开
 	--扔完20次之后再切换到下一个箱子
@@ -118,7 +99,10 @@ function throwTreasureMap()
 	end
 end
 
+
+---------------------------------------------------------------------
 -- 检查背包是否还有图
+---------------------------------------------------------------------
 function checkBag()
 	local nfindIdx = Bag:FindBagItem_1("藏宝图")
 	if nfindIdx ~= -1 then
@@ -129,7 +113,9 @@ function checkBag()
 end
 
 
--- 核心调用，
+---------------------------------------------------------------------
+-- 核心调用
+---------------------------------------------------------------------
 while true do
 	-- 检测背包
 	if checkBag() == true then 
