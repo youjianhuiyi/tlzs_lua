@@ -14,12 +14,12 @@ local activeScene = GetActiveSceneName()
 -- 定义和尚坐标
 ------------------------------------------------------
 local pos = {
-	{"雁南",116,269},
-	{"雁南",246,47},
-	{"洱海",242,248},
-	{"洱海",132,258},
-	{"西湖",222,134},
-	{"西湖",153,132},
+	{"雁南",18,116,269},
+	{"雁南",18,246,47},
+	{"洱海",24,242,248},
+	{"洱海",24,132,258},
+	{"西湖",30,222,134},
+	{"西湖",30,153,132},
 };
 
 ------------------------------------------------------
@@ -38,11 +38,11 @@ function waitForPlayers()
 	for key,value in ipairs(monkPlayers) do
 		if playName == value then
 			num = math.ceil( key/6 )
-			PushDebugMessage("#eDC4C18#cFFFF00 准备去定点刷和尚地图".. pos[num][1].."坐标为："..pos[num][2]..","..pos[num][3]);
+			PushDebugMessage("#eDC4C18#cFFFF00 准备去定点刷和尚地图".. pos[num][1].."坐标为："..pos[num][3]..","..pos[num][4]);
 			Sleep(500)
 			local xpos,ypos = Player_GetPos();
-			if xpos.. "|" .. ypos ~= pos[num][2].. "|" .. pos[num][3] then
-				跨图寻路(pos[num][1],pos[num][2],pos[num][3]);
+			if xpos.. "|" .. ypos ~= pos[num][3].. "|" .. pos[num][4] then
+				MoveTo(pos[num][3],pos[num][4],pos[num][2]);
 				Sleep(1000)
 				break;
 			end
@@ -54,7 +54,7 @@ end
 -- 队长号跟随
 ------------------------------------------------------
 function judgeTeamer(time)
-	if playName == "逗逗．や" or  playName == "ぁ壹葉醬油あ" or  playName == "平凡の" or  playName == "╰ˋ凉皮．﹡" or  playName == "Se⒎蕝蝂哥℡" or  playName == "暒涳芐哋埖焱" or  playName == "．Lynthia" then
+	if  IsLeader() == 1 then
 		Player_TeamFollow(true) --组队跟随
 		Sleep(500)
 	end
