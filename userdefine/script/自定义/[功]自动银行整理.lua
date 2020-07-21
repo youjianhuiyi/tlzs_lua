@@ -145,19 +145,34 @@ function throwFixUpItems(startIndex,endIndex)
 	--无限循环下去，直到取不到图则停止，执行收图操作。
 	--收图操作，固定收图120张之后直接 停止 收图。直接 往银行扔图
 	-- 放图到第4个-第5个箱
-	for i = startIndex,endIndex do
-        checkNPCDst()
-        if judgementGuildUsersIsNear() then
-            GetLuaValue("setmetatable(_G, {__index = Banghui_Bank_Env});Banghui_Bank_patulousBox_Clicked(".. i ..");","",0)
-            Sleep(100)
-            -- 先从一页里面取出所有物品
-            getItemsFromGuildBank();
-            -- 然后再根据指定物品往里面扔
-            findBaseItemsToBank()
-        else
-            PushDebugMessage("#eDC4C18#cFFFF00 请耐心等待其他大佬操作完成再试！！");
+    if startIndex == 1 and endIndex == 4 then
+        for i = startIndex,endIndex do
+            checkNPCDst()
+            if judgementGuildUsersIsNear() then
+                GetLuaValue("setmetatable(_G, {__index = Banghui_Bank_Env});Banghui_Bank_patulousBox_Clicked(".. i ..");","",0)
+                Sleep(100)
+                -- 然后再根据指定物品往里面扔
+                findBaseItemsToBank()
+            else
+                PushDebugMessage("#eDC4C18#cFFFF00 请耐心等待其他大佬操作完成再试！！");
+            end
         end
-	end
+    else
+        for i = startIndex,endIndex do
+            checkNPCDst()
+            if judgementGuildUsersIsNear() then
+                GetLuaValue("setmetatable(_G, {__index = Banghui_Bank_Env});Banghui_Bank_patulousBox_Clicked(".. i ..");","",0)
+                Sleep(100)
+                -- 先从一页里面取出所有物品
+                getItemsFromGuildBank();
+                -- 然后再根据指定物品往里面扔
+                findBaseItemsToBank()
+            else
+                PushDebugMessage("#eDC4C18#cFFFF00 请耐心等待其他大佬操作完成再试！！");
+            end
+        end
+    end
+    
 end
 
 

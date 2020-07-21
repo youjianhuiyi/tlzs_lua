@@ -80,6 +80,7 @@ PushDebugMessage("#eDC4C18#cFFFF00兑换完的元宝票会自动存入帮会银行！！")
 while true do
 	if yuanbao > 0 then
 		exchangeYB();
+		yuanbao = Player:GetDataInt('YUANBAO')
 		if CityToGuild() then
 			MoveToNPC(148, 56, -1, "钱为一"); Sleep(1500)
 			QuestFrameOptionClicked("帮会银行",1); Sleep(3000)
