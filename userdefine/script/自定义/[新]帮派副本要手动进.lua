@@ -42,7 +42,7 @@ local ShanGui_NPC = {} -- 山鬼
 local nPos = 1 -- 找 NPC 从第一个坐标开始找起
 local originSceneId = nil;--进入帮派时获取当前场景 ID
 local newSceneId = nil;-- 进入山鬼或者山妖后的场景 ID
-AI_SetParameter("NEWOLD_daguai", 1) --设置新打怪模式
+
 
 -------------------------------------------------------
 -- 帮会副本NPC寻找的路线
@@ -201,28 +201,31 @@ end
 function enterNPC()
 	activeScene = GetActiveSceneName()
 	bossPosition = table.maxn(findNPC)
+	if nPos <= bossPosition then 
+		findNPC(findNPC[nPos][1],findNPC[nPos][2])
+	else
+		nPos = 1
+	end
+
 	if activeScene == "九层妖塔" then
 		-- 进山妖
-		if nPos <= bossPosition then 
-			findNPC(findNPC[nPos][1],findNPC[nPos][2])
-		else
-			nPos = 1
-		end
 
 		for k_enter,v_enter in ipairs(ShanYao_NPC) do
 			if v_enter[3] ~= nil or v_enter[4] ~= nil then
 				MoveToNPC(v_enter[3],v_enter[4],-1,v_enter[1]);Sleep(1500)
 				newSceneId = GetSceneID();
+				AI_SetParameter("NEWOLD_daguai", 1) --设置新打怪模式
 				nPos = nPos+1
 			end
 		end
 	else
 		-- 进山鬼
-		findNPC()
+		
 		for k_enter,v_enter in ipairs(ShanGui_NPC) do
 			if v_enter[3] ~= nil or v_enter[4] ~= nil then
 				MoveToNPC(v_enter[3],v_enter[4],-1,v_enter[1]);Sleep(1500)
 				newSceneId = GetSceneID();
+				AI_SetParameter("NEWOLD_daguai", 1) --设置新打怪模式
 				nPos = nPos+1
 			end
 		end
@@ -235,19 +238,19 @@ end
 --先自动寻路到帮派城市
 autoRideToNPC( sceneName,scenePositionName,cityName )
 -- 获取当前没有进副本的帮派城市的场景 ID
-originSceneId = GetSceneID();
+-- originSceneId = GetSceneID();
 --进帮派城市后进行找怪，并进入副本
-if originSceneId == newSceneId and newSceneId == nil  then
-	enterNPC()
-end
+-- if originSceneId == newSceneId and newSceneId == nil  then
+-- 	enterNPC()
+-- end
 
 --进了副本之后执行刷怪
 
-for k1,v1 in ipairs(position) do
-	PushDebugMessage("当前是第"..k1.."个坐标点")
-	DaGuai(v1[1],v1[2])
-	Sleep(500)
-end
-PickUp()
-Sleep(10000)
-PickUp()
+-- for k1,v1 in ipairs(position) do
+-- 	PushDebugMessage("当前是第"..k1.."个坐标点")
+-- 	DaGuai(v1[1],v1[2])
+-- 	Sleep(500)
+-- end
+-- PickUp()
+-- Sleep(10000)
+-- PickUp()
