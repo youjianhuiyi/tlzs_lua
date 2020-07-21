@@ -13,7 +13,7 @@ function judgeLocationItems()
 			end
 		end
 	end
-	执行脚本("[09] 扫街喊话收购")
+	LoadScript("[09] 扫街喊话收购")
 end
 
 -- 核心调用
