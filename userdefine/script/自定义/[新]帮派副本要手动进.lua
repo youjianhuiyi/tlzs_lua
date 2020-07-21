@@ -182,8 +182,8 @@ end
 -- 循环查找山妖或者山鬼
 -------------------------------------------------------
 function findNPC(xpos,ypos)
-	MoveToNPC(xpos,ypos,-1)
-	MoveTo(xpos,ypos,'')
+	-- MoveToNPC(xpos,ypos,-1)
+	MoveTo(xpos,ypos,-1)
 	local Obj = Enum2XAllObj()
 	for key,value in ipairs(Obj) do
 		PushDebugMessage(key .. " --- " .. value.name);
