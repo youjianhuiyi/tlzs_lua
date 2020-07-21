@@ -65,4 +65,8 @@ local cooperativePartnerPlayers= {
 	"﹎仙乐°","ˊ疾风剑豪ゝ","＂蔓蔓轻歌ゝ","′慕清枫．や","″う流漓","╰ˋ凉皮．﹡"
 };
 
+-- 所有的队长号
+local leaderPlayers = {
+	"°凌筱雨．≈","″．波少ヽ","﹎素颜．や","′雪走","丶漫步ゾ天龙","平凡の",
+}
 
