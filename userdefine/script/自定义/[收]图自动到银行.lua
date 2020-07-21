@@ -17,7 +17,7 @@ function toGuild()
 	 goGuildNPC()
 	 Sleep(100)
 	end
-	PushDebugMessage("直接去本帮城市了")
+	PushDebugMessage("#eDC4C18#cFFFF00 直接去本帮城市了")
 	QuestFrameOptionClicked("进入本帮城市");Sleep(1000)
 	if CityToGuild() then
 		MoveToNPC(148, 56, -1, "钱为一"); Sleep(1000)

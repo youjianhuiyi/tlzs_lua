@@ -21,7 +21,7 @@ function DoDropItem()
 		local bFind, nIndex = Bag:FindBagItem_DJ(value, 0)
 		--MessageBox(nIndex)
 		if bFind == true and nIndex ~= -1 then
-			PushDebugMessage("销毁装备名称： [" .. value.."]");
+			PushDebugMessage("#eDC4C18#cFFFF00 销毁装备名称： [" .. value.."]");
 			Sleep(50);
 			-- 等待(50)
 			CallFun(5,nIndex);
@@ -52,5 +52,5 @@ end
 for i = 1,10 do
   DoDropItem()
   overNumsItem()
-  PushDebugMessage("正在执行清理背包第： [" .. i.."] 次");
+  PushDebugMessage("#eDC4C18#cFFFF00 正在执行清理背包第： [" .. i.."] 次");
 end

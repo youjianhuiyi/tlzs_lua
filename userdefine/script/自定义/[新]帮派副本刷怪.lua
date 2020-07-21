@@ -30,6 +30,7 @@ local position = {
 -- 定义打怪脚本
 ------------------------------------------------------
 function DaGuai(xpos,ypos)
+	Player_TeamFollow(false)
 	DG_OnInit();
 	DG_SetParam("打怪方式", "先绿后红");
 	DG_SetParam("攻击模式", "优先绿怪");
@@ -82,7 +83,8 @@ end
 ------------------------------------------------------
 -- 核心调用
 ------------------------------------------------------
-for k2,v2 in ipairs(position) do 
+for k2,v2 in ipairs(position) do
+	Player_TeamFollow(false)
 	DaGuai(v2[1],v2[2])
 	Sleep(2000)
 end
