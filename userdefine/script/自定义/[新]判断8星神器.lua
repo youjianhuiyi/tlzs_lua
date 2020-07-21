@@ -1,17 +1,14 @@
---[[用来判断哪些号不需要刷九黎余孽
-	将需要刷的角色名称添加到下面即可
---]]
-local players = {
-	"°凌筱雨．≈","″．波少ヽ","﹎素颜．や","′雪走","丶漫步ゾ天龙","平凡の",
-	"Se⒎蕝蝂哥℡","′梦影．や"," ﹏岚ゝ兮°","超级↑→奶妈","╰☆TeaR陌ゝ","Am°惜你若命",
-	"ぁ壹葉醬油あ","﹏菲儿、ゝ","雨林之后","红颜傲﹡．","しF笑天Dす","此生的回矇",
-	"暒涳芐哋埖焱","°﹎紫龍ヤ","天子月","TH－莫囄","ら﹏笨呆呆°","小小书童2",
-	"逗逗．や","豆豆妈咪","情定三世丶","梵魚ˇ","灬枫ヽ昕℃","″踮脚拥他ゝ",
-	"小叶丶绝杀","艳歌羅敷行","轻狂∴小可","霂鑰．ゞ","﹏紫．骄傲ゝ","．Lynthia",
-	"﹎仙乐°","ˊ疾风剑豪ゝ","＂蔓蔓轻歌ゝ","′慕清枫．や","″う流漓","╰ˋ凉皮．﹡"
-};
+--[[
+    脚本功能：用来判断哪些号不需要刷九黎余孽,将需要刷的角色名称添加到 allPlayers.lua 指定的项目里面即可
+	author:yulinzhihou
+	email:yulinzhihou@gmail.com
+	github:https://github.com/yulinzhihou
+	Date:2020-07-21
+]]
 
+LoadScript("allPlayers.lua")
 local m_missionName = "清剿：九黎余孽"
+local DropCommonItem = {"后肘肉口粮","蝗虫口粮","棕榈口粮"}
 local m_npc = {
     {x = 223, y = 215, sceneID = 697, name = "汤学真", tid = 146},
     {x = 180, y = 156, sceneID = 697, name = "汤学真", tid = 146},
@@ -20,9 +17,7 @@ local m_npc = {
     {x = 79, y = 127, sceneID = 697, name = "汤学真", tid = 146},
     {x = 116, y = 107, sceneID = 697, name = "汤学真", tid = 146}
 }
-
 LoadUserScript("坐标清剿九黎余孽")
-
 --CDG:Init() 如果用这个初始化有问题，如果是跟随队长，则不会主动去坐标
 CDG:fubeiInit() --初始化
 CDG.attack = true --是否攻击
@@ -49,7 +44,9 @@ if CDG.attackMode == "普通抢怪" or CDG.attackMode == "超级抢怪" then
     CDG.attackMode = "默认模式"
 end
 
---打怪循环体的回调函数，控制打怪结束，返回true则结束打怪
+-----------------------------------------------------------
+-- 打怪循环体的回调函数，控制打怪结束，返回true则结束打怪
+-----------------------------------------------------------
 function CDG_callback(...)
     local nComplete = GetMissionVariableByName(m_missionName, 0) --获取任务的完成度
     --MessageBox(nComplete)
@@ -60,7 +57,9 @@ function CDG_callback(...)
 end
 CDG.callfun = CDG_callback --给循环体的回调函数赋值
 
---逻辑
+-----------------------------------------------------------
+-- 逻辑
+-----------------------------------------------------------
 function _SMain(...)
     while true do
         local nComplete = GetMissionVariableByName(m_missionName, 0) --获取任务的完成度
@@ -91,10 +90,9 @@ function _SMain(...)
     end
 end
 
-
-
-local DropCommonItem = {"后肘肉口粮","蝗虫口粮","棕榈口粮"}
-
+-----------------------------------------------------------
+-- 销毁肉交任务，因为有时候是从定时出来的，防止卡
+-----------------------------------------------------------
 function destroyItem()
 	for key,value in ipairs(DropCommonItem) do
 		local bFind, nIndex = Bag:FindBagItem_DJ(value,0)
@@ -108,24 +106,46 @@ function destroyItem()
 	
 end
 
-
---下面是销毁6次，物品名写在下面
---大概5秒钟销毁一次
-for i = 1,6 do
-	destroyItem();
+-----------------------------------------------------------
+-- 判断背包里面的脚本
+-----------------------------------------------------------
+function judgeBagIsEmpty()
+    local tObj = Bag:EnumAllObj()
+	local n = 0
+	local m = 0
+	for i = 1, #tObj do
+		local tmp = tObj[i]
+		if tmp.index <= 29 then 
+			n = n + 1
+		elseif tmp.index > 29 and tmp.index < 60 then 
+			m = m + 1
+		end
+	end
+	return {bag1 = n,bag2 = m}
 end
 
-local playName
-
+-----------------------------------------------------------
+-- 核心调用
+-----------------------------------------------------------
+-- 判断用户是否需要参加任务 
 for key,value in ipairs(players) do
-	playName = GetPlayerInfo("NAME");
+	local playName = GetPlayerInfo("NAME");
 	PushDebugMessage(playName);
-	if playName == value then
+    if playName == value then
+        -- 如果背包没有满包，直接执行下面的任务 
+        local bags = judgeBagIsEmpty();
+        if bags[bag1] > 27 then
+            for i = 1,6 do
+                destroyItem();
+            end
+        end
+
 		_SMain()
 		--回城
 		MoveTo(155, 155, 580, nil, nil, nil)
 		Sleep(1000)
-	end
+    end
 end
 
-跨图寻路("苏州",340,210)
+
+MoveToNPC(340,210,1,"苏州")
