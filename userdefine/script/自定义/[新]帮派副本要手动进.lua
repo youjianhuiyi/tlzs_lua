@@ -183,6 +183,7 @@ end
 -------------------------------------------------------
 function findNPC(xpos,ypos)
 	MoveToNPC(xpos,ypos,-1)
+	MoveTo(xpos,ypos,'')
 	local Obj = Enum2XAllObj()
 	for key,value in ipairs(Obj) do
 		PushDebugMessage(key .. " --- " .. value.name);
