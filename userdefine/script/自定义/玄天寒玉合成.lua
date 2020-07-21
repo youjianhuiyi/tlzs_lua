@@ -41,6 +41,8 @@ while true do
 	--  参数2：整数型		绑定状态 0无所谓 1不绑的 2绑定的
 	--  参数3：整数型		锁定状态 0无所谓 1不锁的 2锁定的
 	local nCount = Bag:GetItemCount("玄天寒玉", 1, 1)
+	GetLuaValue("setmetatable(_G, {__index = MainMenuBar_Env});MainMenuBar_Packet_Clicked();","",0);Sleep(80);
+    GetLuaValue("setmetatable(_G, {__index = Packet_Env});Packet_ChangeTabIndex(1);","",0);Sleep(80);
 	Packet_PackUp_Clicked();--整理背包
 	if nCount < 5 then
 		PushDebugMessage("#b#eff00ff身上玄天寒玉不足5个，结束合成！")
