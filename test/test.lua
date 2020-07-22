@@ -14,4 +14,4 @@
 -- setmetatable(_G, {__index = Packet_EnvPacket_ChangeTabIndex(0);
 -- setmetatable(_G, {__index = Packet_EnvPacket_ChangeTabIndex(1);
 -- setmetatable(_G, {__index = Packet_EnvPacket_ChangeTabIndex(2);
-
+print(math.tointeger( 5^3 ) )
