@@ -14,20 +14,5 @@ function AutoGet()
 	end
 end
 
-
-function findItem()
-	while true do
-		local bFind, nIndex = Bag:FindBagItem_DJ("福降令",0)
-		if bFind == true and nIndex ~= -1 then
-			PushDebugMessage("查找物品名称： [福降令]");
-			AutoExp()
-			Sleep(10);
-		else
-			break
-		end 
-	end
-	return false;
-end
-
 --核心调用
 AutoGet()

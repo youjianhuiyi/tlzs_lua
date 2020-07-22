@@ -7,13 +7,18 @@ local g_szItemName = AI_GetParameter("仓库取物")
 --参数4：整理背包 true 或 false 可空
 --参数5：需取出的锁定状态 0无所谓 1不绑的 2绑定的 可空
 local nCnt = Bank_GetItem(items,1000,1,true)
-MoveToNPC(187,225,246,"史嫂", nil, true)
-Sleep(600)
-QuestFrameOptionClicked("寒玉合成", 1, 500)
-Sleep(600)
 
+--[[
+    脚本功能：玄天寒玉合成
+	author:yulinzhihou
+	email:yulinzhihou@gmail.com
+	github:https://github.com/yulinzhihou
+	Date:2020-07-22
+]]
 
---核心调用，
+-----------------------------------------------------------
+-- 检测身边是否有 NPC
+-----------------------------------------------------------
 function checkNPCDst()
 	local Obj = Enum2XAllObj()
 	for i = 1, #Obj do
@@ -21,15 +26,19 @@ function checkNPCDst()
 		if tmp.name == "史嫂" and tonumber(tmp.dst) <= 3 then
 			return true
 		else
-			for j=1,3 do 
-				MoveToNPC(187,225,246,"史嫂");Sleep(1000)
-				QuestFrameOptionClicked("寒玉合成", 1, 500)
-			end
+			MoveToNPC(187,225,246,"史嫂");Sleep(1000)
+			QuestFrameOptionClicked("寒玉合成", 1, 500)
 			return true
 		end
 	end
 end
 
+
+
+
+-----------------------------------------------------------
+-- 核心调用
+-----------------------------------------------------------
 checkNPCDst()
 
 while true do
@@ -43,7 +52,7 @@ while true do
 	local nCount = Bag:GetItemCount("玄天寒玉", 1, 1)
 	GetLuaValue("setmetatable(_G, {__index = MainMenuBar_Env});MainMenuBar_Packet_Clicked();","",0);Sleep(80);
     GetLuaValue("setmetatable(_G, {__index = Packet_Env});Packet_ChangeTabIndex(1);","",0);Sleep(80);
-	Packet_PackUp_Clicked();--整理背包
+	GetLuaValue("setmetatable(_G, {__index = Packet_Env});Packet_PackUp_Clicked();","",0);Sleep(80);--整理背包
 	if nCount < 5 then
 		PushDebugMessage("#b#eff00ff身上玄天寒玉不足5个，结束合成！")
 		break
