@@ -1,3 +1,10 @@
+--[[
+    脚本功能：帮派银行取图挖图，此项目暂时停止使用，后期开发
+	author:yulinzhihou
+	email:yulinzhihou@gmail.com
+	github:https://github.com/yulinzhihou
+	Date:2020-07-22
+]]
 local players = {
 		--第一队 追逐ゝ
 		{name = "°凌筱雨．≈",	num1 = 30,num2 = 30},

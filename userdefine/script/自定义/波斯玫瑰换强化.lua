@@ -1,3 +1,10 @@
+--[[
+    脚本功能：波斯玫瑰兑换物品
+	author:yulinzhihou
+	email:yulinzhihou@gmail.com
+	github:https://github.com/yulinzhihou
+	Date:2020-07-22
+]]
 PushDebugMessage("波斯玫瑰兑换奖励")
 
 local szItem = "30朵波斯玫瑰兑换奖励"

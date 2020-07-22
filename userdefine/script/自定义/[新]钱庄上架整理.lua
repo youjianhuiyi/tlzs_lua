@@ -65,7 +65,7 @@ function _sMain()
         PushDebugMessage("#b#eff00ff直接去钱庄了")
     end
 
-    跨图寻路("钱庄",92,100)
+    MoveToNPC(92,100,224)
 end
 
 

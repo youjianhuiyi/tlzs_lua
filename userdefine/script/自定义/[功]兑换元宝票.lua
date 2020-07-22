@@ -82,16 +82,16 @@ while true do
 		exchangeYB();
 		yuanbao = Player:GetDataInt('YUANBAO')
 		if CityToGuild() then
-			MoveToNPC(148, 56, -1, "钱为一"); Sleep(1500)
-			QuestFrameOptionClicked("帮会银行",1); Sleep(3000)
+			MoveToNPC(148, 56, -1, "钱为一"); Sleep(500)
+			QuestFrameOptionClicked("帮会银行",1); Sleep(500)
 			findBaseItemsToBank();
 		end
 	else
 		local bFind, nIndex = Bag:FindBagItem_DJ("元宝票", 0)
 		if bFind == true and nIndex ~= -1 then
 			if CityToGuild() then
-				MoveToNPC(148, 56, -1, "钱为一"); Sleep(1500)
-				QuestFrameOptionClicked("帮会银行",1); Sleep(3000)
+				MoveToNPC(148, 56, -1, "钱为一"); Sleep(500)
+				QuestFrameOptionClicked("帮会银行",1); Sleep(500)
 				findBaseItemsToBank();
 			end
 		else

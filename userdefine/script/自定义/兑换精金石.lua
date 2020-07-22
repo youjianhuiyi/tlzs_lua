@@ -1,6 +1,4 @@
 PushDebugMessage("#eDC4C18#cFFFF00 远程兑换精金石")
-------- 开始----------------------------------
-输入屏幕文本("#eDC4C18#cFFFF00开始自动扫荡虚空")
 local g_szItemName = AI_GetParameter("仓库取物")
 	--参数1：需取出的物品名称 ，空格分开
 	--参数2：取出的数量
