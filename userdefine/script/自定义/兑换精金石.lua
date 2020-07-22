@@ -1,3 +1,10 @@
+--[[
+    脚本功能：日常一套，精金石碎片兑换成精金石
+	author:yulinzhihou
+	email:yulinzhihou@gmail.com
+	github:https://github.com/yulinzhihou
+	Date:2020-07-22
+]]
 PushDebugMessage("#eDC4C18#cFFFF00 远程兑换精金石")
 local g_szItemName = AI_GetParameter("仓库取物")
 	--参数1：需取出的物品名称 ，空格分开
