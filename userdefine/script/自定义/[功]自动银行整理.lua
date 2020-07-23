@@ -15,7 +15,7 @@ LoadScript("allPlayers.lua");
 ---------------------------------------------------------------------
 local bag1Items = {
     "低级珍兽还童天书","中级珍兽还童天书","高级珍兽还童天书","超级珍兽还童天书","高级珍兽还童卷轴","低级宝石合成符","宝石雕琢符3级",
-    "龙纹玉灵","缀龙石·元","缀龙石·伤","缀龙石·暴","玉龙髓","净云水","铸纹血玉","玉华灵泉","释灵浆",
+    "龙纹玉灵","铸纹血玉","释灵浆","九宫盒",
 };
 
 local bag2Items = {
@@ -23,7 +23,8 @@ local bag2Items = {
     "虎眼石(1级)","石榴石(1级)","月光石(1级)","尖晶石(1级)","祖母绿(1级)",
     "变石(1级)","黄玉(1级)","碧玺(1级)","紫玉(1级)","皓石(1级)",
     "黄宝石(1级)","蓝宝石(1级)","绿宝石(1级)","黑宝石(1级)","红宝石(1级)",
-    "丝线3级","染料3级","麟木箭","丹青","彩虹之箭","九宫盒","精铁碎片","棉布碎片","秘银碎片"
+    "丝线3级","染料3级","麟木箭","丹青","彩虹之箭","精铁碎片","棉布碎片","落星之箭","飞瀑之角",
+    "秘银碎片","缀龙石·元","缀龙石·伤","缀龙石·暴","玉龙髓","净云水","玉华灵泉",
 };
 
 ---------------------------------------------------------------------
@@ -82,12 +83,12 @@ end
 ---------------------------------------------------------------------
 function findBaseItemsToBank()
     --道具栏
-    for key,value in ipairs(bag1Items) do
+    for k1,v1 in ipairs(bag1Items) do
         --  查找道具栏物品
         --	返回值：2个(逻辑型 整数型) 是否找到 位置索引
         --  参数1：文本型 		物品名称，只支持精确名字
         --  参数2：整数型 		绑定状态 0无所谓 1不绑的 2绑定的
-        local bFind, nIndex = Bag:FindBagItem_DJ(value, 1)
+        local bFind, nIndex = Bag:FindBagItem_DJ(v1, 1)
         -- 如果是里面的物品则取出来。前提是道具栏空间
         if bFind then
             xPos = math.floor(nIndex/5 + 1)
@@ -98,8 +99,8 @@ function findBaseItemsToBank()
     end 
 
     -- 材料栏
-    for key,value in ipairs(bag2Items) do
-        local bFind, nIndex = Bag:FindBagItem_DJ(value, 1)
+    for k2,v2 in ipairs(bag2Items) do
+        local bFind, nCount, nIndex = Bag:FindBagItem_All(v2)
         if bFind then
             xPos = math.floor(nIndex/5 + 1)
             yPos = nIndex-((xPos-1)*5) + 1
