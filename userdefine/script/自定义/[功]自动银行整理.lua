@@ -7,6 +7,7 @@
 ]]
 -- 通用进帮派
 LoadScript("LtoGuild.lua")
+LoadScript("allPlayers.lua");
 ---------------------------------------------------------------------
 -- 定义好需要整理的物品，
 -- bag1Items 是道具栏物品
@@ -124,8 +125,7 @@ function judgementGuildUsersIsNear()
 		local tmp = tObj[i]
 		--取角色名称。对比上面队伍名称,如果是团长号所在的队，不需要做操作，如果不是团队所在的队，需要退队。
 		--将对应需要申请进团的队伍名称转换成字符串进行查找，人员有没有到齐
-		local masterStr = table.concat(allPlayers, ", ", key1, key2 )
-		if string.find( masterStr,tmp.name) ~= nil then
+		if string.find(allPlayers,tmp.name) ~= nil then
             return false
         else
             return true;
