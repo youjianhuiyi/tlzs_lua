@@ -58,5 +58,3 @@ function goGuildNPC()
 	end
 
 end
-
-goGuildNPC();
