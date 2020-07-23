@@ -42,23 +42,6 @@ function getItemsFromOwnBank()
 	local nCnt = Bank_GetItem(items,1000,1,true)
 end
 
-
----------------------------------------------------------------------
--- 从帮会NPC进入帮会打开对话
----------------------------------------------------------------------
-function toGuild()
-	while flag do
-	 goGuildNPC()
-	 Sleep(100)
-	end
-	PushDebugMessage("#eDC4C18#cFFFF00 直接去本帮城市了")
-	QuestFrameOptionClicked("进入本帮城市");Sleep(1000)
-	if CityToGuild() then
-		MoveToNPC(148, 56, -1, "钱为一"); Sleep(1000)
-		QuestFrameOptionClicked("帮会银行",1); Sleep(1000)
-	end
-end
-
 ---------------------------------------------------------------------
 -- 检查NPC离自己的距离
 ---------------------------------------------------------------------
@@ -133,7 +116,6 @@ function judgementGuildUsersIsNear()
 	--遍历周围所有对象数组,有以下属性
 	--id,name ,class ,title,x ,y ,dst ,hp ,guid ,owner ,menpai ,petzrid ,state ,zwType,level ,target ,model ,bhid ,inteam ,leader
 	--id,名称，类型，称号，x坐标，y坐标，距离，血，GUID,怪物拥有者id，门派，珍兽拥有者id,状态，作物类型，等级，目标id,模型id，帮会id,是否在队伍，是否队长
-    local allNewPlayers = table.concat(allPlayers,'',1,#allPlayers)
     local tObj = Enum2XAllObj()
 	--过滤类型。 参数2：依次代表 {NPC,怪物，玩家，珍兽，宝箱} 0排除，1保留，
 	tObj = ObjFilterByClass(tObj, {0, 0, 1, 0, 0})
@@ -143,7 +125,7 @@ function judgementGuildUsersIsNear()
 		local tmp = tObj[i]
 		--取角色名称。对比上面队伍名称,如果是团长号所在的队，不需要做操作，如果不是团队所在的队，需要退队。
         --将对应需要申请进团的队伍名称转换成字符串进行查找，人员有没有到齐
-		if string.find(allNewPlayers,tmp.name) ~= nil then
+		if string.find(allPlayersStr,tmp.name) ~= nil then
             return false
         else
             return true;
